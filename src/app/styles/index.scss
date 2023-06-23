@@ -1,5 +1,9 @@
 @import 'var.scss';
 @import 'main.scss';
+body{
+    background-color: var(--background-primary);
+    font-family: Helvetica;
+}
 
 .bodySignUp{ background-color: var(--background-primary);
     display: flex;
@@ -60,4 +64,8 @@ h2{
 
 .btnSubmit:hover {
     background-color: var(--active-tab-marker)
+}
+
+.hidden{
+    display: none;
 }

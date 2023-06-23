@@ -58,7 +58,7 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       hash: true,
-      template: "./src/index.html",
+      template: "./src/app/index.html",
       filename: "index.html",
       chunks: ["index"],
       minify: {
