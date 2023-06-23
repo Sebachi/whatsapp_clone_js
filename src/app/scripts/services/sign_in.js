@@ -8,7 +8,7 @@ const passwordInput = document.getElementById("password");
 
 
 
-const sign_up =  async () => {
+const sign_in =  async () => {
   let validUser = false, validPassword = false, userId, userPass = false;
 
   const users = await getusers();
@@ -44,4 +44,4 @@ const sign_up =  async () => {
 
 };
 
-export default sign_up
+export default sign_in
