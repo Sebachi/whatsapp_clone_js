@@ -6,7 +6,7 @@ import { readingChat } from "./ui/main.js";
 import { returnLogin } from "./ui/main.js";
 import "../styles/index.scss"
 
-console.log('holawwwwww');
+
 d.addEventListener('DOMContentLoaded', async ()=> {
   printMain()
   await sign_up()
