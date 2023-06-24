@@ -2,10 +2,14 @@
 const d = document
 const input_message = d.getElementById("input_message")
 const sent_button = d.getElementById("sent_button")
+const sendForm = d.getElementById('sendForm')
 const message__container = d.getElementById("message__container")
 const chats__container = d.getElementById("chats__container")
-import { getMessage } from "../services/request"
-import { getusers } from "../services/request"
+import { getMessage, postMessage, getusers } from "../services/request"
+const message__header = d.getElementById('message__header')
+
+
+
 
 
 const identification = () =>{
@@ -56,7 +60,22 @@ export const printUsers = async () => {
 const printMessage = async (callback) => {
     const message = await getMessage()
     const userId = identification()
-
+    const userlist = await getusers()
+    let idReceptor  = userlist[callback - 1].id
+    message__header.innerHTML= `
+    <button class="profile_name">
+          <div class="user-icon"
+            ><img src="${userlist[callback - 1].userImage}" alt=""
+          /></div>
+          <span>${userlist[callback - 1].name}</span>
+        </button>
+        <div class="icons-message">
+          <button
+            ><img src="/src/assets/magnifying-glass-svgrepo-com.svg" alt=""
+          /></button>
+          <button><img src="/src/assets/3dots-com.svg" alt="" /></button>
+        </div>
+        `
     message__container.innerHTML= ``
      for (let i = 0; i < message.length; i++) {
        if(userId == message[i].receptor && callback == message[i].emisor){
@@ -71,7 +90,9 @@ const printMessage = async (callback) => {
               </div>
         `
        }
- }}
+ }
+    return idReceptor
+}
 
 //ReadingChat
  export const  readingChat = async () => {
@@ -86,9 +107,7 @@ const printMessage = async (callback) => {
     else{
       console.log('no chat in this space');
     }
-
   })
- 
 }
 
 //ReturnLogin
@@ -98,6 +117,23 @@ const printMessage = async (callback) => {
     location.reload
   }}
 
+
+
+
+export const sendMessage = () => {
+  sendForm.addEventListener('submit', (e) => {
+    e.preventDefault
+    const newMessage = input_message.value
+
+    let prototypeMessage = {
+      "receptor": idReceptor,
+      "emisor": identification(),
+      "text": newMessage,
+      "date": ""
+    }
+    postMessage(JSON.stringify(prototypeMessage))
+  })
+}
 
 
 

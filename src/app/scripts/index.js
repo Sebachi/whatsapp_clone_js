@@ -16,7 +16,7 @@ d.addEventListener('DOMContentLoaded', async ()=> {
   await sign_in()
   await printUsers()
   readingChat()
-
+  sendMessage()
 })
 
 returnLogin()

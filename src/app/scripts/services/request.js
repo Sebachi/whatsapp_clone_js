@@ -3,7 +3,6 @@ export const URL_API = "http://localhost:3000";
 export const getusers = async () => {
     try {
       const { data } = await axios.get(`${URL_API}${'/users'}`);;
-      console.log("funciona");
       return data;
     } catch (error) {
       console.log(error);
@@ -21,5 +20,20 @@ export  const getMessage = async () => {
       return  error;
     }
   }
+
+  export  const postMessage = async (message) => {
+    try {
+      const { data } = await axios.post(`${URL_API}${'/messages'}`,
+      {
+        message
+      }
+      )
+      console.log(message);
+    } catch (error) {
+      console.log(error);
+      return  error;
+    }
+  }
+
 
 
