@@ -21,14 +21,12 @@ export  const getMessage = async () => {
     }
   }
 
-  export  const postMessage = async (message) => {
+  export  const postMessage = async (hola) => {
     try {
       const { data } = await axios.post(`${URL_API}${'/messages'}`,
-      {
-        message
-      }
+      hola
       )
-      console.log(message);
+      console.log(hola);
     } catch (error) {
       console.log(error);
       return  error;

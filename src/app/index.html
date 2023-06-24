@@ -13,8 +13,8 @@
    <form id="signUp">
     <h2>User login</h2>
     <label class="inputContainer">
-        <span class="inputSpan"> User:  </span>
-        <input type="text" placeholder="Write your user-name" class="input" id="user">
+        <span class="inputSpan"> Cell number:  </span>
+        <input type="number" placeholder="Write your user-name" class="input" id="user">
     </label>
     <label class="inputContainer">
         <span class="inputSpan"> Password:  </span>
@@ -64,7 +64,7 @@
     </section>
     <div class="divider"></div>
 
-    <section class="message__section" id="message__section">
+    <section class="message__section hidden" id="message__section">
       <header class="message__header header" id="message__header">
         <button class="profile_name">
           <div class="user-icon"
@@ -86,12 +86,10 @@
 
       </main>
       <footer class="message__input">
-        <form id="sendForm">
           <button><img src="/src/assets/emoji-com.svg" alt="happy-face"></button>
           <button><img src="/src/assets/attach-com.svg" alt=""></button>
-          <input type="text" id="input_message" placeholder="Escribe un mensaje aqui ...">
-          <button id="sent_button" type="submit"><img src="/src/assets/sent.svg" alt=""></button>
-        </form>
+          <input type="text" id="input_message" placeholder="Escribe un mensaje aqui">
+          <button id="sent_button"><img src="/src/assets/sent.svg" alt=""></button>
       </footer>
     </section>
 

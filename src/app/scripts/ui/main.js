@@ -7,7 +7,7 @@ const message__container = d.getElementById("message__container")
 const chats__container = d.getElementById("chats__container")
 import { getMessage, postMessage, getusers } from "../services/request"
 const message__header = d.getElementById('message__header')
-
+const message__section = d.getElementById('message__section')
 
 
 
@@ -31,7 +31,7 @@ export const printUsers = async () => {
         /></div>
         <div class="contact__inf_chat">
           <span class="name_hour"
-            ><p class="contact_name">${users[i].user_name}</p>
+            ><p class="contact_name">${users[i].name}</p>
             <p class="hour_message">5:26 P.M.</p></span
           >
           <span  class="preview"
@@ -57,11 +57,11 @@ export const printUsers = async () => {
 
 
 //PrintMessage
+let idReceptor  = ``
 const printMessage = async (callback) => {
     const message = await getMessage()
     const userId = identification()
     const userlist = await getusers()
-    let idReceptor  = userlist[callback - 1].id
     message__header.innerHTML= `
     <button class="profile_name">
           <div class="user-icon"
@@ -71,15 +71,14 @@ const printMessage = async (callback) => {
         </button>
         <div class="icons-message">
           <button
-            ><img src="/src/assets/magnifying-glass-svgrepo-com.svg" alt=""
-          /></button>
-          <button><img src="/src/assets/3dots-com.svg" alt="" /></button>
+            > <figure><svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" fill="#d1d7db" stroke="#d1d7db"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;stroke:#d1d7db;stroke-miterlimit:10;stroke-width:1.91px;}</style></defs><circle class="cls-1" cx="9.14" cy="9.14" r="7.64"></circle><line class="cls-1" x1="22.5" y1="22.5" x2="14.39" y2="14.39"></line></g></svg></figure></button>
+          <button><figure> <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M14 5C14 6.10457 13.1046 7 12 7C10.8954 7 10 6.10457 10 5C10 3.89543 10.8954 3 12 3C13.1046 3 14 3.89543 14 5Z" fill="#d1d7db"></path> <path d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z" fill="#d1d7db"></path> <path d="M12 21C13.1046 21 14 20.1046 14 19C14 17.8954 13.1046 17 12 17C10.8954 17 10 17.8954 10 19C10 20.1046 10.8954 21 12 21Z" fill="#d1d7db"></path> </g></svg></figure> </button>
         </div>
         `
     message__container.innerHTML= ``
      for (let i = 0; i < message.length; i++) {
        if(userId == message[i].receptor && callback == message[i].emisor){
-        console.log(message[i].text);
+  
       message__container.innerHTML += `  <div class="message-received message">
             <p>${message[i].text}</p>
             </div>
@@ -91,19 +90,21 @@ const printMessage = async (callback) => {
         `
        }
  }
-    return idReceptor
 }
 
 //ReadingChat
  export const  readingChat = async () => {
   chats__container.addEventListener('click', (event) => {
+    message__section.classList.remove('hidden')
     const clickedElement = event.target.closest('.chat__container') || null;
 
     if (!(clickedElement === null))
     {const messageID = clickedElement.getAttribute("id") ;
     const chatId = messageID.match(/\d+/)[0];
-    console.log(chatId);
-    printMessage(chatId);}
+    printMessage(chatId);
+    idReceptor = chatId
+    console.log(idReceptor);
+  }
     else{
       console.log('no chat in this space');
     }
@@ -120,20 +121,37 @@ const printMessage = async (callback) => {
 
 
 
-export const sendMessage = () => {
-  sendForm.addEventListener('submit', (e) => {
-    e.preventDefault
+export const sendMessage =  () => {
+  const handdletoogle = async () => {
     const newMessage = input_message.value
-
+    const idReceptorNum = Number(idReceptor)
     let prototypeMessage = {
-      "receptor": idReceptor,
+      "receptor": idReceptorNum,
       "emisor": identification(),
       "text": newMessage,
-      "date": ""
+      "date": "",
     }
-    postMessage(JSON.stringify(prototypeMessage))
+    const pepino = prototypeMessage
+    await postMessage(pepino)
+   input_message.value = ''
+    printMessage(idReceptorNum)
+  }
+
+  const handleKeyPress = async (event) => {
+    if (event.key === "Enter") {
+      await handdletoogle()
+      }
+  }
+
+  input_message.addEventListener('keypress', handleKeyPress);
+
+  sent_button.addEventListener('click', async () => {
+
+    await handdletoogle()
   })
+
 }
+
 
 
 

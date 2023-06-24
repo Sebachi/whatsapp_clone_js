@@ -3,7 +3,7 @@ import sign_in from "./services/sign_in.js";
 import printMain from "./ui/printMain.js";
 import { printUsers } from "./ui/main.js";
 import { readingChat } from "./ui/main.js";
-import { returnLogin } from "./ui/main.js";
+import { returnLogin, sendMessage } from "./ui/main.js";
 import "../styles/index.scss"
 const d = document
 // const input_message = d.getElementById("input_message")
@@ -16,7 +16,7 @@ d.addEventListener('DOMContentLoaded', async ()=> {
   await sign_in()
   await printUsers()
   readingChat()
-  sendMessage()
+ sendMessage()
 })
 
 returnLogin()
