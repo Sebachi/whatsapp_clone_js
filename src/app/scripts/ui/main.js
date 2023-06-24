@@ -8,7 +8,7 @@ const chats__container = d.getElementById("chats__container")
 import { getMessage, postMessage, getusers } from "../services/request"
 const message__header = d.getElementById('message__header')
 const message__section = d.getElementById('message__section')
-
+const user_icon = d.getElementById('user_icon')
 
 
 
@@ -21,8 +21,11 @@ identification()
 
 //PrintUsers
 export const printUsers = async () => {
+  const userId = identification()
    const users = await getusers()
    const check_unactive_svg = "../assets/check-unactive.svg"
+   user_icon.src = users[userId - 1].userImage
+
     for (let i = 0; i < users.length; i++) {
 
         chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].messageId}" name="${users[i].messageId}" data-id="${users[i].messageId}">
@@ -62,6 +65,9 @@ const printMessage = async (callback) => {
     const message = await getMessage()
     const userId = identification()
     const userlist = await getusers()
+    
+
+
     message__header.innerHTML= `
     <button class="profile_name">
           <div class="user-icon"
