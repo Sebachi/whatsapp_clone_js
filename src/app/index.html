@@ -15,8 +15,8 @@
       <form id="signUp">
         <h2>User login</h2>
         <label class="inputContainer">
-          <span class="inputSpan"> User: </span>
-          <input type="text" placeholder="Write your user-name" class="input" id="user">
+          <span class="inputSpan"> Cell number: </span>
+          <input type="number" placeholder="Write your user-name" class="input" id="user">
         </label>
         <label class="inputContainer">
           <span class="inputSpan"> Password: </span>
@@ -26,12 +26,14 @@
       </form>
     </main>
   </div>
+
+  <!-- HASTA AQUI ES LOGIN -->
   <div class="mainBox bodyMain style-4 hidden" id="bodyMain">
 
     <section class="chats__section">
       <header class="chats__header ">
         <article class="header__icons fixed_header header">
-          <a href="" class="user-icon"><img src="../assets/user-com.svg" alt="" /></a>
+          <a href="" class="user-icon"><img id="user_icon" src="../assets/user-com.svg" alt="" /></a>
           <div id="icons-chat">
             <button><img src="/src/assets/users-more-com.svg" alt="" /></button>
             <button><img src="/src/assets/status-com.svg" alt="" /></button>
@@ -60,9 +62,8 @@
     </section>
     <div class="divider"></div>
 
-    <section class="message__section">
-      <header class="message__header header">
-        <button class="backBtn hidden">◀</button>
+    <section class="message__section hidden" id="message__section">
+      <header class="message__header header" id="message__header">
         <button class="profile_name">
           <div class="user-icon"><img src="/src/assets/user-com.svg" alt="" /></div>
           <span>Jose</span>
