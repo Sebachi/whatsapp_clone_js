@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="icon" href="/src/assets/whatsapp-logo-black-com.svg" />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="icon" href="/src/assets/whatsapp-logo-black-com.svg" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-<body  id="fullbody">
-<div class="bodySignUp style-4" id="bodySignUp">
-<main id="mainContainer">
-   <form id="signUp">
-    <h2>User login</h2>
-    <label class="inputContainer">
-        <span class="inputSpan"> User:  </span>
-        <input type="text" placeholder="Write your user-name" class="input" id="user">
-    </label>
-    <label class="inputContainer">
-        <span class="inputSpan"> Password:  </span>
-        <input type="password" placeholder="Write your password" class="input" id="password">
-    </label>
-    <button type="submit" class="btnSubmit">Login</button>
-   </form>
-</main>
-</div>
-<div class="mainBox bodyMain style-4 hidden" id="bodyMain">
+
+<body id="fullbody">
+  <div class="bodySignUp style-4" id="bodySignUp">
+    <main id="mainContainer">
+      <form id="signUp">
+        <h2>User login</h2>
+        <label class="inputContainer">
+          <span class="inputSpan"> User: </span>
+          <input type="text" placeholder="Write your user-name" class="input" id="user">
+        </label>
+        <label class="inputContainer">
+          <span class="inputSpan"> Password: </span>
+          <input type="password" placeholder="Write your password" class="input" id="password">
+        </label>
+        <button type="submit" class="btnSubmit">Login</button>
+      </form>
+    </main>
+  </div>
+  <div class="mainBox bodyMain style-4 hidden" id="bodyMain">
 
     <section class="chats__section">
-      <header class="chats__header " >
+      <header class="chats__header ">
         <article class="header__icons fixed_header header">
-          <a href="" class="user-icon"
-            ><img src="../assets/user-com.svg" alt=""
-          /></a>
+          <a href="" class="user-icon"><img src="../assets/user-com.svg" alt="" /></a>
           <div id="icons-chat">
             <button><img src="/src/assets/users-more-com.svg" alt="" /></button>
             <button><img src="/src/assets/status-com.svg" alt="" /></button>
@@ -41,10 +41,7 @@
         </article>
         <div class="searchbar__container">
           <button>
-            <img
-              src="/src/assets/magnifying-glass-svgrepo-com.svg"
-              alt="magnifying-glass"
-            />
+            <img src="/src/assets/magnifying-glass-svgrepo-com.svg" alt="magnifying-glass" />
           </button>
           <input type="text" placeholder="Busca un chat o inicia uno nuevo" />
         </div>
@@ -55,8 +52,9 @@
 
         </article>
         <footer class="footer_chats">
-          <p><img src="/src/assets/lock.svg" alt="lock"> Tus mensaje personales estan <span>cifrados de extremo a extremo</span>.</p>
-      </footer>
+          <p><img src="/src/assets/lock.svg" alt="lock"> Tus mensaje personales estan <span>cifrados de extremo a
+              extremo</span>.</p>
+        </footer>
       </main>
 
     </section>
@@ -64,36 +62,34 @@
 
     <section class="message__section">
       <header class="message__header header">
+        <button class="backBtn hidden">◀</button>
         <button class="profile_name">
-          <div class="user-icon"
-            ><img src="/src/assets/user-com.svg" alt=""
-          /></div>
+          <div class="user-icon"><img src="/src/assets/user-com.svg" alt="" /></div>
           <span>Jose</span>
         </button>
         <div class="icons-message">
-          <button
-            ><img src="/src/assets/magnifying-glass-svgrepo-com.svg" alt=""
-          /></button>
+          <button><img src="/src/assets/magnifying-glass-svgrepo-com.svg" alt="" /></button>
           <button><img src="/src/assets/3dots-com.svg" alt="" /></button>
         </div>
       </header>
       <main class="message_view " id="message_view">
         <article class="message__container style-4" id="message__container">
 
-      </article>
+        </article>
 
       </main>
       <footer class="message__input">
-          <button><img src="/src/assets/emoji-com.svg" alt="happy-face"></button>
-          <button><img src="/src/assets/attach-com.svg" alt=""></button>
-          <input type="text" id="input_message" placeholder="Escribe un mensaje aqui">
-          <button id="sent_button"><img src="/src/assets/sent.svg" alt=""></button>
+        <button><img src="/src/assets/emoji-com.svg" alt="happy-face"></button>
+        <button><img src="/src/assets/attach-com.svg" alt=""></button>
+        <input type="text" id="input_message" placeholder="Escribe un mensaje aqui">
+        <button id="sent_button"><img src="/src/assets/sent.svg" alt=""></button>
       </footer>
     </section>
 
   </div>
 
 
-    <script src="./scripts/index.js" type="module"></script>
+  <script src="./scripts/index.js" type="module"></script>
 </body>
+
 </html>
