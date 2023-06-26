@@ -12,7 +12,7 @@ import magifyingglass from '../../../assets/magnifying-glass-svgrepo-com.svg';
 import dots from '../../../assets/3dots-com.svg';
 import unactiveChecks from  "../../../assets/check-unactive.svg"
 import activeChecks from "../../../assets/check-active.svg"
-
+import down_arrow from "../../../assets/arrow-down.svg"
 //identification
 const identification = () =>{
     let userId = JSON.parse(localStorage.getItem("userId"))
@@ -75,12 +75,12 @@ const printMessage = async (callback) => {
      for (let i = 0; i < message.length; i++) {
        if(userId == message[i].receptor && callback == message[i].emisor){
       message__container.innerHTML += `  <div class="message-received message"
-            <p>${message[i].text}</p>
+            <p>${message[i].text}</p> <button class='down_arrow'><img src=${down_arrow}></button>
             </div>
       `
      } else if(userId == message[i].emisor && callback == message[i].receptor){
         message__container.innerHTML += `  <div class="message-sended message">
-              <p>${message[i].text}</p>
+              <p>${message[i].text}</p> <button class='down_arrow'><img src=${down_arrow}></button>
               </div>
         `
        }
