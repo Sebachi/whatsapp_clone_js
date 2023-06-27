@@ -251,7 +251,24 @@ width: 100%;
     margin: 10px 30px;
     display: flex;
     position: relative;
+    flex-direction: column;
 }
+.message_widgets{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 14px;
+    width: 100%;
+    & .message_flag{
+        height: 100%;
+    }
+    & .hour_message{
+        height: 100%;
+        font-size: 12px;
+    }
+}
+
 .down_arrow{
     background-color: transparent;
     width: 12px;
@@ -425,6 +442,9 @@ width: 100%;
     .message__section, .message__header, .message__input, .message_view, .default_message{
         width: 70vw;
     }
+    .message{
+        max-width: 450px;
+    }
 }
 @media (min-width: 1440px) {
     body{
@@ -437,6 +457,9 @@ width: 100%;
     .message__section, .message__header, .message__input, .message_view, .default_message{
 
         width: 68vw;
+    }
+    .message{
+        max-width: 500px;
     }
 }
 @media (min-width: 1660px) {
@@ -453,8 +476,26 @@ width: 100%;
     .searchbar__container{
         width: 25vw;
     }
-
+    .message{
+        max-width: 550px;
+    }
 }
+@media (max-width: 1300px){
+    .message{
+        max-width: 300px;
+    }
+}
+@media (max-width: 1170px){
+    .message{
+        max-width: 200px;
+    }
+}
+@media (max-width: 800px){
+    .message{
+        max-width: 140px;
+    }
+}
+
 @media (max-width: 720px) {
   .message__section, .default_message{
     display: none;
@@ -470,4 +511,5 @@ width: 100%;
   .chats__section{
     width: 100%;
   }
+
 }

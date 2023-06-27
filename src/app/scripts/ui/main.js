@@ -87,13 +87,15 @@ const printMessage = async (callback) => {
     message__container.innerHTML= ``
      for (let i = 0; i < message.length; i++) {
        if(userId == message[i].receptor && callback == message[i].emisor){
-      message__container.innerHTML += `  <div class="message-received message"
-            <p id='${message[i].id}'>${message[i].text}</p> <button class="down_arrow down_arrow_active"><img src=${down_arrow}></button>
+      message__container.innerHTML += `  <div class="message-received message">
+           <div><p id='${message[i].id}'>${message[i].text}</p> <button class="down_arrow down_arrow_active"><img src=${down_arrow}></button></div> 
+            <div class='message_widgets'> <img class='message_flag' src=${unactiveChecks}>  <span class='hour_message'>${message[i].hour}</span> </div>
             </div>
       `
      } else if(userId == message[i].emisor && callback == message[i].receptor){
         message__container.innerHTML += `  <div class="message-sended message">
-              <p id='${message[i].id}'>${message[i].text}</p> <button class="down_arrow down_arrow_active"><img  src=${down_arrow}></button>
+              <div><p id='${message[i].id}'>${message[i].text}</p> <button class="down_arrow down_arrow_active"><img  src=${down_arrow}></button></div>
+              <div class='message_widgets'> <img class='message_flag' src=${unactiveChecks}>  <span class='hour_message'>${message[i].hour}</span> </div>
               </div>
         `
        }
