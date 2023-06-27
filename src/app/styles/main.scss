@@ -311,8 +311,8 @@ width: 100%;
     background-color: gray;
 }
 // Dropdown menu
-.dropdown-menu{
-    background-color: var( --background-secondary);
+.dropdown-menu, .dropdownLog_out {
+    background-color: $drop_menu_gray;
     opacity: inherit;
 
     position: absolute;
@@ -336,7 +336,14 @@ width: 100%;
     }
 }
 
-
+#log_out{
+    position: relative;
+}
+.dropdownLog_out{
+    right: 0px;
+    top: 33px;
+    width: 200px;
+}
 
 /* Mediaquerys para parecer a la vista desktop de webwpp */
 @media (min-width: 500px) {

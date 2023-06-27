@@ -7,7 +7,7 @@ import { returnLogin, sendMessage } from "./ui/main.js";
 import "../styles/index.scss"
 import { dropMenu } from "./ui/dropmenu.js";
 import { printSign_up } from "./services/sign_up.js";
-
+ import { fnLog_out } from "./services/log_out.js";
 const d = document
 // const input_message = d.getElementById("input_message")
 // const sent_button = d.getElementById("sent_button")
@@ -20,6 +20,7 @@ d.addEventListener('DOMContentLoaded', async ()=> {
   await sign_in();
   await printUsers();
  await readingChat()
+ fnLog_out()
  sendMessage()
  dropMenu()
 })
