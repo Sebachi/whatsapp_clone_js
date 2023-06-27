@@ -8,6 +8,9 @@ import { getMessage, postMessage, getusers } from "../services/request"
 const message__header = d.getElementById('message__header')
 const message__section = d.getElementById('message__section')
 const user_icon = d.getElementById('user_icon')
+const backArrow = d.getElementById("backArrow"); //boton regreso
+const searchBtn = d.getElementById("searchBtn");
+const searchInput = d.getElementById("searchInput");
 import magifyingglass from '../../../assets/magnifying-glass-svgrepo-com.svg';
 import dots from '../../../assets/3dots-com.svg';
 import unactiveChecks from "../../../assets/check-unactive.svg"
@@ -59,7 +62,9 @@ const printMessage = async (callback) => {
   const userId = identification()
   const userlist = await getusers()
   message__header.innerHTML = `
-    <button class="profile_name">
+        <img class="backArrow" id="backArrow" src="https://www.svgrepo.com/show/510795/arrow-circle-left.svg"
+        alt="">
+        <button class="profile_name">
           <div class="user-icon"
             ><img src="${userlist[callback - 1].userImage}" alt=""
           /></div>
@@ -86,9 +91,7 @@ const printMessage = async (callback) => {
     }
   }
 }
-       }
- }
-}
+
 
 //ReadingChat
 export const readingChat = async () => {
@@ -155,61 +158,76 @@ export const sendMessage = () => {
 
 }
 
-
-
-//SendMessage
-export const sendMessage = () => {
-  const handdletoogle = async () => {
-    const newMessage = input_message.value
-    const idReceptorNum = Number(idReceptor)
-    let prototypeMessage = {
-      "receptor": idReceptorNum,
-      "emisor": identification(),
-      "text": newMessage,
-      "date": "",
-    }
-    const pepino = prototypeMessage
-    await postMessage(pepino)
-    input_message.value = ''
-    printMessage(idReceptorNum)
-  }
-
-  const handleKeyPress = async (event) => {
-    if (event.key === "Enter") {
-      await handdletoogle()
-    }
-  }
-
-  input_message.addEventListener('keypress', handleKeyPress);
-
-  sent_button.addEventListener('click', async () => {
-
-    await handdletoogle()
+export const quitMessage = () => {
+  backArrow.addEventListener("click", (event) => {
+    const prueba = event.target.id;
+    message__section.innerHTML = "";
+    console.log(prueba);
   })
-
 }
 
+export const searchMessage = () => {
+  searchBtn.addEventListener("click", async () => {
+    const searchText = (searchInput.value).toLowerCase();
+    console.log(searchText);
+    const preFilterUsers = await getusers();
+    const preFilterMessages = await getMessage();
+    chats__container.innerHTML = `
+    <div id="searchUsersContainer"> 
+    <h3> usuarios encontrados <h3>
+    </div>
+    <div id="searchMessagesContainer"> 
+    <h3> mensajes encontrados </h3>
+    </div>
 
+    `
+    const searchUsersContainer = d.getElementById('searchUsersContainer')
+    const searchMessagesContainer = d.getElementById('searchMessagesContainer')
 
+    for (let i = 0; i < preFilterUsers.length; i++) {
+      if (((preFilterUsers[i].name).toLowerCase()).includes(searchText)) {
+        searchUsersContainer.innerHTML += `
+        <div class="chat__container" id="message${preFilterUsers[i].messageId}" name="${preFilterUsers[i].messageId}" data-id="${preFilterUsers[i].messageId}">
+        <div class="contact-icon"
+          ><img src="${preFilterUsers[i].userImage}" alt=""
+        /></div>
+        <div class="contact__inf_chat">
+          <span class="name_hour"
+            ><p class="contact_name">${preFilterUsers[i].name}</p>
+            <p class="hour_message">5:26 P.M.</p></span
+          >
+          <span  class="preview"
+            ><figure class="checks"> <img src=${unactiveChecks}> </figure>
+            <p class="message_preview">
+              Se pueden editar propiedades
+            </p></span
+          >
+        </div>
+      </div>
+          `
+      } //primer if
+    }
+    for (let j = 0; j < preFilterMessages.length; j++) {
+      if (((preFilterMessages[j].text).toLowerCase()).includes(searchText)) {
+        searchMessagesContainer.innerHTML += `
+        <div class="chat__container" id="message${preFilterMessages[j].id}" name=""">
+    
+        <div class="contact__inf_chat">
+          <span class="name_hour"
+            ><p class="contact_name">${preFilterUsers[preFilterMessages[j].emisor].name}</p>
+            <p class="hour_message">5:26 P.M.</p></span
+          >
+          <span  class="preview"
+            ><figure class="checks"> <img src=${unactiveChecks}> </figure>
+            <p class="message_preview">
+            ${preFilterMessages[j].text}
+            </p></span
+          >
+        </div>
+      </div>
+        `
+      }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+  })
+}
