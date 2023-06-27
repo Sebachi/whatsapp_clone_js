@@ -57,11 +57,9 @@
 <div class="mainBox bodyMain style-4 hidden" id="bodyMain">
 
     <section class="chats__section">
-      <header class="chats__header " >
+      <header class="chats__header ">
         <article class="header__icons fixed_header header">
-          <a href="" class="user-icon"
-            ><img id="user_icon" src="../assets/user-com.svg" alt=""
-          /></a>
+          <a href="" class="user-icon"><img id="user_icon" src="../assets/user-com.svg" alt="" /></a>
           <div id="icons-chat">
             <button><img src="/src/assets/users-more-com.svg" alt="" /></button>
             <button><img src="/src/assets/status-com.svg" alt="" /></button>
@@ -70,18 +68,18 @@
           </div>
         </article>
         <div class="searchbar__container">
-          <button>
-            <img
-              src="/src/assets/magnifying-glass-svgrepo-com.svg"
-              alt="magnifying-glass"
-            />
+          <button class="searchBtn" id="searchBtn">
+            <img src="/src/assets/magnifying-glass-svgrepo-com.svg" alt="magnifying-glass" />
           </button>
-          <input type="text" placeholder="Busca un chat o inicia uno nuevo" />
+          <input type="text" placeholder="Busca un chat o inicia uno nuevo" id="searchInput" />
         </div>
       </header>
       <main>
 
         <article class="chats__container style-4" id="chats__container">
+
+        </article>
+        <article class="search_container hidden">
 
         </article>
         <footer class="footer_chats">
@@ -91,6 +89,7 @@
 
     </section>
     <div class="divider"></div>
+    <!-- DEFAULT MESSAGE -->
     <section class="default_message" id="default_message">
       <div class="default_container">
         <figure><img src="../assets/wpp_default_img.png" alt="default_chat_wpp"></figure>
@@ -105,9 +104,10 @@
     </section>
 
 
-
+ <!-- BASE MESSAGE -->
     <section class="message__section hidden" id="message__section">
       <header class="message__header header" id="message__header">
+        <img class="backArrow" id="backArrow" src="https://www.svgrepo.com/show/510795/arrow-circle-left.svg" alt="">
         <button class="profile_name">
           <div class="user-icon"
             ><img src="/src/assets/user-com.svg" alt=""
@@ -115,9 +115,7 @@
           <span></span>
         </button>
         <div class="icons-message">
-          <button
-            ><img src="/src/assets/magnifying-glass-svgrepo-com.svg" alt=""
-          /></button>
+          <button><img src="/src/assets/magnifying-glass-svgrepo-com.svg" alt="" /></button>
           <button><img src="/src/assets/3dots-com.svg" alt="" /></button>
         </div>
       </header>
@@ -130,16 +128,17 @@
 
       </main>
       <footer class="message__input">
-          <button><img src="/src/assets/emoji-com.svg" alt="happy-face"></button>
-          <button><img src="/src/assets/attach-com.svg" alt=""></button>
-          <input type="text" id="input_message" placeholder="Escribe un mensaje aqui">
-          <button id="sent_button"><img src="/src/assets/sent.svg" alt=""></button>
+        <button><img src="/src/assets/emoji-com.svg" alt="happy-face"></button>
+        <button><img src="/src/assets/attach-com.svg" alt=""></button>
+        <input type="text" id="input_message" placeholder="Escribe un mensaje aqui">
+        <button id="sent_button"><img src="/src/assets/sent.svg" alt=""></button>
       </footer>
     </section>
 
   </div>
 
 
-    <script src="./scripts/index.js" type="module"></script>
+  <script src="./scripts/index.js" type="module"></script>
 </body>
+
 </html>

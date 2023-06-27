@@ -105,12 +105,22 @@ input {
     align-items: center;
     /* position: fixed; */
     width: 60vw;
-
+    position: relative;
+}
+.backArrow{
+    position: absolute;
+    left: 8px;
+    height: 16px;
+    cursor: pointer;
+    align-self: center;
+    margin-right: 10px;
+    display: none;
 }
 .profile_name{
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-left: 15px;
 }
 .profile_name span{
     color: #fff;
@@ -511,5 +521,8 @@ width: 100%;
   .chats__section{
     width: 100%;
   }
+.backArrow{
+    display: block;
+}
 
 }
