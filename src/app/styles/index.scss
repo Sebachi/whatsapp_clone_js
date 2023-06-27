@@ -27,6 +27,7 @@ body {
   margin: 40px;
   width: 80vw;
   color: #fff;
+  
 }
 
 h2 {
@@ -40,6 +41,7 @@ h2 {
     border-radius: 5px;
     background-color: var(--background-secondary);
     color: var(--font-placeholder);
+    padding: 10px;
 }
 
 .input::placeholder {
@@ -107,6 +109,7 @@ h2 {
     & input{
         height: 20px;
         width: 300px;
+        padding: 10px;
     }
     & button{
         margin: 20px;
