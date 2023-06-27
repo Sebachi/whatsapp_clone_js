@@ -18,26 +18,23 @@ let userpass = JSON.parse(localStorage.getItem("userPass"))
 
 
 //identification
-export const identification = async () => {
-  let userId = await JSON.parse(localStorage.getItem("userId"));
-  userId = Number(userId);
-  await getusers(); // Esperar a que se complete la carga de datos de users
-
-  return userId;
-};
-
+const identification = () =>{
+  let userId = JSON.parse(localStorage.getItem("userId"))
+   userId = Number(userId)
+return userId
+}
+identification()
 
 //PrintUsers
 
 export const printUsers = async () => {
   if (userpass === true){
-  const userId = await identification()
+  const userId = identification()
    const users = await getusers()
- console.log(userpass);
  user_icon.src = users[userId - 1].userImage;
 
     for (let i = 0; i < users.length; i++) {
-    
+
         chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].messageId}" name="${users[i].messageId}" data-id="${users[i].messageId}">
         <div class="contact-icon"
           ><img src="${users[i].userImage}" alt=""
