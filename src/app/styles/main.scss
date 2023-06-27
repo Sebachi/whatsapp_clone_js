@@ -137,9 +137,18 @@ input {
     display: flex;
     padding: 5px 5px;
     border-radius: 10px;
-    gap: 20px;
+    justify-content: space-evenly;
     margin-right: 10px;
+    align-items: center;
     /* margin-top: 69px; */
+    & .cross_search_bar {
+        height: 16px;
+        width: 16px;
+      & img{
+        height: 100%;
+        width: 100%;
+    }
+}
 }
 .searchbar__container button, .searchbar__container input{
     background-color: var(--background-secondary);

@@ -23,7 +23,7 @@ export  const getMessage = async () => {
 
   export  const postMessage = async (message) => {
     try {
-      const { data } = await axios.post(`${URL_API}${'/messages'}`,
+      await axios.post(`${URL_API}${'/messages'}`,
       message
       )
     } catch (error) {
@@ -35,7 +35,7 @@ export  const getMessage = async () => {
 
   export  const postUser = async (user) => {
     try {
-      const { data } = await axios.post(`${URL_API}${'/users'}`,
+      await axios.post(`${URL_API}${'/users'}`,
       user
       )
     } catch (error) {
@@ -44,3 +44,13 @@ export  const getMessage = async () => {
     }
   }
 
+export const deleteMessage = async (messageId) => {
+  try {
+    await axios.delete(`${URL_API}${'/messages'}`,
+    messageId
+    )
+  } catch (error) {
+    console.log(error);
+    return  error;
+  }
+}

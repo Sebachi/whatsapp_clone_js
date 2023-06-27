@@ -3,12 +3,12 @@ const d = document
 export const dropMenu = () => {
     const handleDropdown = (event) => {
       const target = event.target.closest('.down_arrow') || null;
-  
+      let dropdownMenu
       if (target !== null) {
         // Verificar si el dropdown ya existe
-        const dropdownMenu = target.querySelector('.dropdown-menu');
+        dropdownMenu = target.querySelector('.dropdown-menu');
   
-        if (dropdownMenu) {
+        if (dropdownMenu)  {
           // El dropdown ya existe, ocultarlo o eliminarlo
           dropdownMenu.remove(); // Eliminar el elemento del DOM
           // Opción alternativa: dropdownMenu.style.display = 'none'; // Ocultar el elemento
@@ -33,8 +33,8 @@ export const dropMenu = () => {
           target.classList.remove('down_arrow_active');
         }
       }
-    };
-  
+    }
+    ;
     // Eliminar el listener de eventos antes de agregarlo nuevamente
     message__container.removeEventListener('click', handleDropdown);
     message__container.addEventListener('click', handleDropdown);
