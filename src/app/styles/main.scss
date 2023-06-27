@@ -56,7 +56,6 @@ input {
     height: 100%;
     min-width: 340px;
     z-index: 1;
-    position: relative;
 }
 
 .chats__header{
@@ -228,7 +227,6 @@ input::placeholder{
     min-width: 180px;
     display: flex;
     flex-direction: column;
-    position: relative;
 
 }
 .message_view{
@@ -251,7 +249,27 @@ width: 100%;
     width: auto;
     padding: 5px 20px 10px 10px;
     margin: 10px 30px;
+    display: flex;
+    position: relative;
+}
+.down_arrow{
+    background-color: transparent;
+    width: 12px;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    right: 5px;
     
+    & img {
+        width: 12px;
+    }
+}
+.down_arrow_active{
+    opacity: 0;
+}
+
+.down_arrow_active:hover{
+    opacity: inherit;
 }
 .message-received{
     background-color: var(--background-message-received);
@@ -292,6 +310,33 @@ width: 100%;
 .pollito{
     background-color: gray;
 }
+// Dropdown menu
+.dropdown-menu{
+    background-color: var( --background-secondary);
+    opacity: inherit;
+
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    list-style: none;
+    gap: 10px;
+    padding: 20px 0;
+    font-size: 14px;
+    width: 100px;
+    right: 10px;
+    top: 33px;
+    z-index: 4;
+    & li {
+        padding: 7px 0;
+        cursor: pointer;
+    }
+    & li:hover{
+        background-color: var( --app-background);
+    }
+}
+
+
 
 /* Mediaquerys para parecer a la vista desktop de webwpp */
 @media (min-width: 500px) {

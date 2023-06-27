@@ -13,22 +13,31 @@ import dots from '../../../assets/3dots-com.svg';
 import unactiveChecks from  "../../../assets/check-unactive.svg"
 import activeChecks from "../../../assets/check-active.svg"
 import down_arrow from "../../../assets/arrow-down.svg"
+
+let userpass = JSON.parse(localStorage.getItem("userPass"))
+
+
 //identification
-const identification = () =>{
-    let userId = JSON.parse(localStorage.getItem("userId"))
-     userId = Number(userId)
- return userId
-}
-identification()
+export const identification = async () => {
+  let userId = await JSON.parse(localStorage.getItem("userId"));
+  userId = Number(userId);
+  await getusers(); // Esperar a que se complete la carga de datos de users
+
+  return userId;
+};
+
 
 //PrintUsers
+
 export const printUsers = async () => {
-  const userId = identification()
+  if (userpass === true){
+  const userId = await identification()
    const users = await getusers()
-   user_icon.src = users[userId - 1].userImage
+ console.log(userpass);
+ user_icon.src = users[userId - 1].userImage;
 
     for (let i = 0; i < users.length; i++) {
-
+    
         chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].messageId}" name="${users[i].messageId}" data-id="${users[i].messageId}">
         <div class="contact-icon"
           ><img src="${users[i].userImage}" alt=""
@@ -47,7 +56,8 @@ export const printUsers = async () => {
         </div>
       </div>`
     }
-}
+  
+}}
 
 
 
@@ -75,12 +85,12 @@ const printMessage = async (callback) => {
      for (let i = 0; i < message.length; i++) {
        if(userId == message[i].receptor && callback == message[i].emisor){
       message__container.innerHTML += `  <div class="message-received message"
-            <p>${message[i].text}</p> <button class='down_arrow'><img src=${down_arrow}></button>
+            <p id='${message[i].id}'>${message[i].text}</p> <button class="down_arrow down_arrow_active"><img src=${down_arrow}></button>
             </div>
       `
      } else if(userId == message[i].emisor && callback == message[i].receptor){
         message__container.innerHTML += `  <div class="message-sended message">
-              <p>${message[i].text}</p> <button class='down_arrow'><img src=${down_arrow}></button>
+              <p id='${message[i].id}'>${message[i].text}</p> <button class="down_arrow down_arrow_active"><img  src=${down_arrow}></button>
               </div>
         `
        }
@@ -147,7 +157,46 @@ export const sendMessage =  () => {
 
 }
 
+// dropdown menu message
+export const dropMenu = () => {
+  const handleDropdown = (event) => {
+    const target = event.target.closest('.down_arrow') || null;
 
+    if (target !== null) {
+      // Verificar si el dropdown ya existe
+      const dropdownMenu = target.querySelector('.dropdown-menu');
+
+      if (dropdownMenu) {
+        // El dropdown ya existe, ocultarlo o eliminarlo
+        dropdownMenu.remove(); // Eliminar el elemento del DOM
+        // Opción alternativa: dropdownMenu.style.display = 'none'; // Ocultar el elemento
+        target.classList.add('down_arrow_active');
+      } else {
+        const dropdownMenu = document.createElement('ul');
+        dropdownMenu.classList.add('dropdown-menu');
+
+        // Crear los elementos del menú
+        const menuItem1 = document.createElement('li');
+        menuItem1.textContent = 'Editar';
+        menuItem1.classList.add('edit_btn');
+        const menuItem2 = document.createElement('li');
+        menuItem2.textContent = 'Eliminar';
+        menuItem2.classList.add('delete_btn');
+        // Agregar los elementos del menú al menú desplegable
+        dropdownMenu.appendChild(menuItem1);
+        dropdownMenu.appendChild(menuItem2);
+
+        // Agregar el menú desplegable como hijo del elemento target
+        target.appendChild(dropdownMenu);
+        target.classList.remove('down_arrow_active');
+      }
+    }
+  };
+
+  // Eliminar el listener de eventos antes de agregarlo nuevamente
+  message__container.removeEventListener('click', handleDropdown);
+  message__container.addEventListener('click', handleDropdown);
+};
 
 
 
