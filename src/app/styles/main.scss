@@ -359,7 +359,6 @@ width: 100%;
    
 }
 .default_container{
-    
     height: 50vw;
    width: 50vw;
    display: flex;
@@ -390,8 +389,8 @@ width: 100%;
     
 }
 .footer_default{
-    position: relative;
-    top: 200px;
+    position: absolute;
+    bottom: 30px;
     padding: 12px;
 & p{
     color: var(--font-placeholder);
