@@ -19,7 +19,7 @@ d.addEventListener('DOMContentLoaded', async ()=> {
   printSign_up()
   await sign_in();
   await printUsers();
- readingChat()
+ await readingChat()
  sendMessage()
  dropMenu()
 })
