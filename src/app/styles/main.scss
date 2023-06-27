@@ -345,6 +345,70 @@ width: 100%;
     width: 200px;
 }
 
+// DEFAULT VIEW MESSAGE
+.default_message{
+   
+    height: 100vh;
+    width: 60vw;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $default_gray;
+   
+}
+.default_container{
+    
+    height: 50vw;
+   width: 50vw;
+   display: flex;
+   flex-direction: column;
+   position: relative;
+    & figure{
+        width: 100%;
+        height: 70%;
+    }
+    & img{
+        width: 100%;
+        height: 100%;
+    }
+    & .default_text{
+        color: var(--font-placeholder);
+        align-self: center;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        font-size: 14px;
+        & h4{
+            color: #fff;
+            font-size: 30px;
+            font-weight: lighter;
+        }
+    }
+    
+}
+.footer_default{
+    position: relative;
+    top: 200px;
+    padding: 12px;
+& p{
+    color: var(--font-placeholder);
+    font-size: 12px;
+    text-align: center;
+}
+& p span{
+    color: var(--audio-progress-played-outgoing);
+}
+& img{
+    width: 14px;
+    height: 14px;
+    margin: 0;
+}
+}
+
+
 /* Mediaquerys para parecer a la vista desktop de webwpp */
 @media (min-width: 500px) {
    /* body{ overflow: hidden;} */
@@ -354,7 +418,7 @@ width: 100%;
     .chats__section  , .chats__header, .chats__container{
         width: 30vw;
     }
-    .message__section, .message__header, .message__input, .message_view{
+    .message__section, .message__header, .message__input, .message_view, .default_message{
         width: 70vw;
     }
 }
@@ -366,7 +430,7 @@ width: 100%;
     .chats__section , .chats__header, .chats__container{
         width: 28vw;
     }
-    .message__section, .message__header, .message__input, .message_view{
+    .message__section, .message__header, .message__input, .message_view, .default_message{
 
         width: 68vw;
     }
@@ -379,7 +443,7 @@ width: 100%;
     .chats__section,  .chats__header, .chats__container{
         width: 27vw;
     }
-    .message__section, .message__header, .message_view, .message__input{
+    .message__section, .message__header, .message_view, .message__input, .default_message{
         width: 63vw;
     }
     .searchbar__container{
@@ -388,7 +452,7 @@ width: 100%;
 
 }
 @media (max-width: 720px) {
-  .message__section{
+  .message__section, .default_message{
     display: none;
   }
   .chats__header{

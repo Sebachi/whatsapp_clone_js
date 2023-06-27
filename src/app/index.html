@@ -7,7 +7,7 @@
     <link rel="icon" href="/src/assets/whatsapp-logo-black-com.svg" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-<body  id="fullbody">
+<body  id="fullbody" class="style-4">
 <div class="bodySignUp style-4" id="bodySignUp">
 <main id="mainContainer">
    <form id="signUp">
@@ -85,12 +85,26 @@
 
         </article>
         <footer class="footer_chats">
-          <p><img src="/src/assets/lock.svg" alt="lock"> Tus mensaje personales estan <span>cifrados de extremo a extremo</span>.</p>
+          <p><img src="/src/assets/lock.svg" alt="lock"> Tus mensaje personales no estan <span>cifrados de extremo a extremo</span>.</p>
       </footer>
       </main>
 
     </section>
     <div class="divider"></div>
+    <section class="default_message" id="default_message">
+      <div class="default_container">
+        <figure><img src="../assets/wpp_default_img.png" alt="default_chat_wpp"></figure>
+        <article class="default_text">
+          <h4>WhatsApp Clone</h4>
+          <span>Envia y recibe mensajes a traves de nuestro servidor improvisado. Usa Whatsapp Clone para enviar y recibir mensajes de las personas que desees.</span>
+        </article>
+      </div>
+      <footer class="footer_default">
+        <p><img src="/src/assets/lock.svg" alt="lock"> No cifrado de extremo a extremo.</p>
+    </footer>
+    </section>
+
+
 
     <section class="message__section hidden" id="message__section">
       <header class="message__header header" id="message__header">
@@ -98,7 +112,7 @@
           <div class="user-icon"
             ><img src="/src/assets/user-com.svg" alt=""
           /></div>
-          <span>Jose</span>
+          <span></span>
         </button>
         <div class="icons-message">
           <button

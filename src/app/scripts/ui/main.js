@@ -99,11 +99,15 @@ const printMessage = async (callback) => {
 //ReadingChat
  export const  readingChat = async () => {
   chats__container.addEventListener('click', (event) => {
-    message__section.classList.remove('hidden')
+    const default_message = d.getElementById('default_message')
+   
     const clickedElement = event.target.closest('.chat__container') || null;
 
     if (!(clickedElement === null))
-    {const messageID = clickedElement.getAttribute("id") ;
+    {
+      default_message.classList.add('hidden')
+      message__section.classList.remove('hidden')
+      const messageID = clickedElement.getAttribute("id") ;
     const chatId = messageID.match(/\d+/)[0];
     printMessage(chatId);
     idReceptor = chatId
