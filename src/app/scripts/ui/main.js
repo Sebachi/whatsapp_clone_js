@@ -208,7 +208,8 @@ export const searchMessage = () => {
       } //primer if
     }
     for (let j = 0; j < preFilterMessages.length; j++) {
-      if (((preFilterMessages[j].text).toLowerCase()).includes(searchText)) {
+      if((preFilterMessages[j].text) && (preFilterUsers[preFilterMessages[j].emisor]) )
+      {if (((preFilterMessages[j].text).toLowerCase()).includes(searchText)) {
         searchMessagesContainer.innerHTML += `
         <div class="chat__container" id="message${preFilterMessages[j].id}" name=""">
     
@@ -226,7 +227,7 @@ export const searchMessage = () => {
         </div>
       </div>
         `
-      }
+      }}
 
     }
   })
