@@ -13,6 +13,7 @@ import dots from '../../../assets/3dots-com.svg';
 import unactiveChecks from  "../../../assets/check-unactive.svg"
 import activeChecks from "../../../assets/check-active.svg"
 import down_arrow from "../../../assets/arrow-down.svg"
+import { DateTime } from "luxon";
 
 let userpass = JSON.parse(localStorage.getItem("userPass"))
 
@@ -64,6 +65,9 @@ export const printUsers = async () => {
 //PrintMessage
 let idReceptor  = ``
 const printMessage = async (callback) => {
+   const scrollToBottom = () => {
+    message__container.scrollTop = message__container.scrollHeight;
+    }
     const message = await getMessage()
     const userId = identification()
     const userlist = await getusers()
@@ -93,7 +97,9 @@ const printMessage = async (callback) => {
               </div>
         `
        }
+       scrollToBottom()
  }
+
 }
 
 //ReadingChat
@@ -129,15 +135,23 @@ const printMessage = async (callback) => {
 
 
 //SendMessage
+
+
 export const sendMessage =  () => {
+  
   const handdletoogle = async () => {
+    // LUXON IMPLEMENTATION
+    const dt = DateTime.local().setZone("America/Bogota");
+    const hournow = dt.toLocaleString(DateTime.TIME_SIMPLE)
+    const dateNow = dt.toLocaleString(DateTime.DATE_SHORT)
     const newMessage = input_message.value
     const idReceptorNum = Number(idReceptor)
     let prototypeMessage = {
       "receptor": idReceptorNum,
       "emisor": identification(),
       "text": newMessage,
-      "date": "",
+      "date": dateNow,
+      "hour": hournow,
     }
     const pepino = prototypeMessage
     await postMessage(pepino)
