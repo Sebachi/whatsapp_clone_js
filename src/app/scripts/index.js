@@ -5,7 +5,7 @@ import { printUsers } from "./ui/main.js";
 import { readingChat } from "./ui/main.js";
 import { returnLogin, sendMessage } from "./ui/main.js";
 import "../styles/index.scss"
-import { dropMenu } from "./ui/main.js";
+import { dropMenu } from "./ui/dropmenu.js";
 import { printSign_up } from "./services/sign_up.js";
 
 const d = document
