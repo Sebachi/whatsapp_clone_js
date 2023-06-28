@@ -1,6 +1,5 @@
 export const URL_API = "http://localhost:3000";
-const axios = require('axios').default;
-
+import axios from "axios";
 export const getusers = async () => {
     try {
       const { data } = await axios.get(`${URL_API}${'/users'}`);;
