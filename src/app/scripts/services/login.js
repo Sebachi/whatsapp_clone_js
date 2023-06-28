@@ -11,7 +11,6 @@ const passwordInput = document.getElementById("password");
 const sign_in =  async () => {
   let validUser = false, validPassword = false, userId, userPass = false;
   const users = await getusers();
-  console.log(users);
   formContainer.addEventListener("submit", (event) => {
     event.preventDefault();
 

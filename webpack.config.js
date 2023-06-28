@@ -32,7 +32,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
+        test: /\.(jpe?g|png|gif|svg|bin)$/i,
         type: "asset/resource",
         generator: {
           filename: "assets/[name][ext]",

@@ -1,62 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Clone</title>
-    <link rel="icon" href="/src/assets/whatsapp-logo-black-com.svg" />
-    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Clone</title>
+  <link rel="icon" href="/src/assets/whatsapp-logo-black-com.svg" />
+  <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 </head>
-<body  id="fullbody" class="style-4">
-<div class="bodySignUp style-4" id="bodySignUp">
-<main id="mainContainer">
-   <form id="signUp">
-    <h2>User login</h2>
-    <label class="inputContainer">
-        <span class="inputSpan"> Cell number:  </span>
-        <input type="number" placeholder="Write your number" class="input" id="user">
-    </label>
-    <label class="inputContainer">
-        <span class="inputSpan"> Password:  </span>
-        <input type="password" placeholder="Write your password" class="input" id="password">
-    </label>
-    <button type="submit" class="btnSubmit btn_signup">Login</button>
-   </form>
-   <section class="signUpPrompt"><p class="text_signup">Don't you have an account?, register now:</p> <button class="btn_signup" id="sign_up_page">Sign up</button> </section>
-</main>
 
-</div>
+<body id="fullbody" class="style-4">
+  <div class="bodySignUp style-4" id="bodySignUp">
+    <main id="mainContainer">
+      <form id="signUp">
+        <h2>User login</h2>
+        <label class="inputContainer">
+          <span class="inputSpan"> Cell number: </span>
+          <input type="number" placeholder="Write your number" class="input" id="user">
+        </label>
+        <label class="inputContainer">
+          <span class="inputSpan"> Password: </span>
+          <input type="password" placeholder="Write your password" class="input" id="password">
+        </label>
+        <button type="submit" class="btnSubmit btn_signup">Login</button>
+      </form>
+      <section class="signUpPrompt">
+        <p class="text_signup">Don't you have an account?, register now:</p> <button class="btn_signup"
+          id="sign_up_page">Sign up</button>
+      </section>
+    </main>
 
-<!-- HASTA AQUI ES LOGIN -->
-<div class="bodySignUp2 style-4 hidden" id="bodySignUp2">
-  <main id="signUpReal" class=" signUp_container">
-    <button id="return_login" class="btn_signup"><img src="/src/assets/arrow-left-com.svg" alt="arrow_left"></button>
-     <form id="signUpRealForm">
-      <h2 class="tittlesignup">User register</h2>
-      <label class="inputContainer">
-          <span class="inputSpan"> Cell number:  </span>
+  </div>
+
+  <!-- HASTA AQUI ES LOGIN -->
+  <div class="bodySignUp2 style-4 hidden" id="bodySignUp2">
+    <main id="signUpReal" class=" signUp_container">
+      <button id="return_login" class="btn_signup"><img src="/src/assets/arrow-left-com.svg" alt="arrow_left"></button>
+      <form id="signUpRealForm">
+        <h2 class="tittlesignup">User register</h2>
+        <label class="inputContainer">
+          <span class="inputSpan"> Cell number: </span>
           <input type="number" placeholder="Write a number for your register" class="input" id="newUser">
-      </label>
-      <label class="inputContainer">
-        <span class="inputSpan"> Name:  </span>
-        <input type="text" placeholder="Write a name for your register" class="input" id="newName">
-    </label>
-    <label class="inputContainer">
-      <span class="inputSpan"> Profile Image:  </span>
-      <input type="url" placeholder="Insert url with an image" class="input" id="newImage">
-  </label>
-      <label class="inputContainer">
-          <span class="inputSpan"> Password:  </span>
+        </label>
+        <label class="inputContainer">
+          <span class="inputSpan"> Name: </span>
+          <input type="text" placeholder="Write a name for your register" class="input" id="newName">
+        </label>
+        <label class="inputContainer">
+          <span class="inputSpan"> Profile Image: </span>
+          <input type="url" placeholder="Insert url with an image" class="input" id="newImage">
+        </label>
+        <label class="inputContainer">
+          <span class="inputSpan"> Password: </span>
           <input type="password" placeholder="Write your new password" class="input" id="newPassword">
-      </label>
-      <button type="submit" class="btnSubmit btn_signup" id="register">Sign up</button>
-     </form>
-  </main>
+        </label>
+        <button type="submit" class="btnSubmit btn_signup" id="register">Sign up</button>
+      </form>
+    </main>
   </div>
   <!-- HASTA AQUI ES EL SIGN UP -->
-<div class="mainBox bodyMain style-4 hidden" id="bodyMain">
+  <div class="mainBox bodyMain style-4 hidden" id="bodyMain">
 
-    <section class="chats__section">
+    <section class="chats__section" id="chats__section">
       <header class="chats__header ">
         <article class="header__icons fixed_header header">
           <a href="" class="user-icon"><img id="user_icon" src="../assets/user-com.svg" alt="" /></a>
@@ -72,20 +76,22 @@
             <img src="/src/assets/magnifying-glass-svgrepo-com.svg" alt="magnifying-glass" />
           </button>
           <input type="text" placeholder="Busca un chat o inicia uno nuevo" id="searchInput" />
-          <button class="cross_search_bar" id="cross_search_bar"><img src="/src/assets/cross-com.svg" alt="cross"></button>
+          <button class="cross_search_bar" id="cross_search_bar"><img src="/src/assets/cross-com.svg"
+              alt="cross"></button>
         </div>
       </header>
-      <main>
+      <main id="contact__main">
 
         <article class="chats__container style-4" id="chats__container">
 
         </article>
-        <article class="search_container hidden">
+        <article class="search__container hidden">
 
         </article>
         <footer class="footer_chats">
-          <p><img src="/src/assets/lock.svg" alt="lock"> Tus mensaje personales no estan <span>cifrados de extremo a extremo</span>.</p>
-      </footer>
+          <p><img src="/src/assets/lock.svg" alt="lock"> Tus mensaje personales no estan <span>cifrados de extremo a
+              extremo</span>.</p>
+        </footer>
       </main>
 
     </section>
@@ -96,23 +102,25 @@
         <figure><img src="../assets/wpp_default_img.png" alt="default_chat_wpp"></figure>
         <article class="default_text">
           <h4>WhatsApp Clone</h4>
-          <span>Envia y recibe mensajes a traves de nuestro servidor improvisado. Usa Whatsapp Clone para enviar y recibir mensajes de las personas que desees.</span>
+          <span>Envia y recibe mensajes a traves de nuestro servidor improvisado. Usa Whatsapp Clone para enviar y
+            recibir mensajes de las personas que desees.</span>
         </article>
       </div>
       <footer class="footer_default">
         <p><img src="/src/assets/lock.svg" alt="lock"> No cifrado de extremo a extremo.</p>
-    </footer>
+      </footer>
     </section>
 
 
- <!-- BASE MESSAGE -->
+    <!-- BASE MESSAGE -->
     <section class="message__section hidden" id="message__section">
       <header class="message__header header" id="message__header">
-        <img class="backArrow" id="backArrow" src="https://www.svgrepo.com/show/510795/arrow-circle-left.svg" alt="">
+        <!-- <button class="backArrow" id="backArrow">
+          <img src="https://www.svgrepo.com/show/510795/arrow-circle-left.svg" alt="">
+        </button> -->
+
         <button class="profile_name">
-          <div class="user-icon"
-            ><img src="/src/assets/user-com.svg" alt=""
-          /></div>
+          <div class="user-icon"><img src="/src/assets/user-com.svg" alt="" /></div>
           <span></span>
         </button>
         <div class="icons-message">
@@ -122,10 +130,11 @@
       </header>
       <main class="message_view " id="message_view">
         <article class="message__container style-4" id="message__container">
-          <div class="message-received message">  <p></p>
+          <div class="message-received message">
+            <p></p>
             <button class='down_arrow'><img></button>
           </div>
-      </article>
+        </article>
 
       </main>
       <footer class="message__input">

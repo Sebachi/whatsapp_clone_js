@@ -6,7 +6,6 @@ const bodySignUp = d.getElementById('bodySignUp')
 
 const printMain = () => {
   if (actualPass == true) {
-    console.log('pasando pagina');
     bodyMain.classList.remove('hidden')
     bodySignUp.classList.add('hidden')
   }
