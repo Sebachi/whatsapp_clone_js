@@ -1,7 +1,8 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const sharp = require("sharp");
 module.exports = {
   mode: "none",
   entry: {
@@ -16,12 +17,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
+        loader: "babel-loader",
       },
       {
         test: /\.css$/i,
@@ -32,7 +28,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
-        test: /\.(jpe?g|png|gif|svg|bin)$/i,
+        test: /\.(jpe?g|png|gif|svg|bin|webp)$/i,
         type: "asset/resource",
         generator: {
           filename: "assets/[name][ext]",
@@ -50,6 +46,55 @@ module.exports = {
         include: path.resolve(__dirname, "src/"),
         use: ["html-loader"],
       },
+    ],
+  },
+  optimization: {
+    minimizer: [
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.sharpMinify,
+          options: {
+            encodeOptions: {
+              jpeg: {
+                quality: 100,
+              },
+              webp: {
+                lossless: true,
+              },
+              avif: {
+                lossless: true,
+              },
+              png: {
+                quality: 70,
+              },
+              gif: {},
+            },
+          },
+        },
+        generator: [
+          {
+            type: "asset",
+            implementation: ImageMinimizerPlugin.imageminGenerate,
+            options: {
+              plugins: ["imagemin-webp"],
+            },
+          },
+        ],
+      }),
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.svgoMinify,
+          options: {
+            encodeOptions: {
+              // Pass over SVGs multiple times to ensure all optimizations are applied. False by default
+              multipass: true,
+              plugins: [
+                "preset-default",
+              ],
+            },
+          },
+        },
+      }),
     ],
   },
   plugins: [

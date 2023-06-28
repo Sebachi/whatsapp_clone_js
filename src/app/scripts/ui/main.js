@@ -50,7 +50,7 @@ export const printUsers = async () => {
 
       chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].messageId}" name="${users[i].messageId}" data-id="${users[i].messageId}">
         <div class="contact-icon"
-          ><img src="${users[i].userImage}" alt=""
+          ><img alt='user_profileImg' src="${users[i].userImage}" alt=""
         /></div>
         <div class="contact__inf_chat">
           <span class="name_hour"
@@ -58,7 +58,7 @@ export const printUsers = async () => {
             <p class="hour_message">5:26 P.M.</p></span
           >
           <span  class="preview"
-            ><figure class="checks"> <img src=${unactiveChecks}> </figure>
+            ><figure class="checks"> <img alt='Unactive_checks' src=${unactiveChecks}> </figure>
             <p class="message_preview">
               Se pueden editar propiedades
             </p></span
@@ -87,28 +87,28 @@ const printMessage = async (callback) => {
     </button>
     <button class="profile_name">
           <div class="user-icon"
-            ><img src="${userlist[callback - 1].userImage}" alt=""
+            ><img alt='UserProfileImg' src="${userlist[callback - 1].userImage}" alt=""
           /></div>
           <span>${userlist[callback - 1].name}</span>
         </button>
         <div class="icons-message">
           <button
-            ><img src=${magifyingglass}> </button>
-          <button><img src=${dots}> </button>
+            ><img alt='magifyingglass' src=${magifyingglass}> </button>
+          <button><img alt='3dots' src=${dots}> </button>
         </div>
         `
   message__container.innerHTML = ``
   for (let i = 0; i < message.length; i++) {
     if (userId == message[i].receptor && callback == message[i].emisor) {
       message__container.innerHTML += `  <div class="message-received message">
-           <div><p id='${message[i].id}'>${message[i].text}</p> <button class="down_arrow down_arrow_active"><img src=${down_arrow}></button></div> 
-            <div class='message_widgets'> <img class='message_flag' src=${unactiveChecks}>  <span class='hour_message'>${message[i].hour}</span> </div>
+           <div><p id='${message[i].id}'>${message[i].text}</p> <button class="down_arrow down_arrow_active"><img alt='down_arrow'src=${down_arrow}></button></div> 
+            <div class='message_widgets'> <img class='message_flag' alt='message_flag' src=${unactiveChecks}>  <span class='hour_message'>${message[i].hour}</span> </div>
             </div>
       `
     } else if (userId == message[i].emisor && callback == message[i].receptor) {
       message__container.innerHTML += `  <div class="message-sended message">
-              <div><p id='${message[i].id}'>${message[i].text}</p> <button class="down_arrow down_arrow_active"><img  src=${down_arrow}></button></div>
-              <div class='message_widgets'> <img class='message_flag' src=${unactiveChecks}>  <span class='hour_message'>${message[i].hour}</span> </div>
+              <div><p id='${message[i].id}'>${message[i].text}</p> <button class="down_arrow down_arrow_active"><img alt='down_arrow' src=${down_arrow}></button></div>
+              <div class='message_widgets'> <img alt='message_flag' class='message_flag' src=${unactiveChecks}>  <span class='hour_message'>${message[i].hour}</span> </div>
               </div>
         `
     }
@@ -271,7 +271,7 @@ const printFilter = async () => {
       searchUsersContainer.innerHTML += `
       <div class="chat__container" id="message${preFilterUsers[i].messageId}" name="${preFilterUsers[i].messageId}" data-id="${preFilterUsers[i].messageId}">
       <div class="contact-icon"
-        ><img src="${preFilterUsers[i].userImage}" alt=""
+        ><img alt='Profile_pic' src="${preFilterUsers[i].userImage}" alt=""
       /></div>
       <div class="contact__inf_chat">
         <span class="name_hour"
@@ -279,7 +279,7 @@ const printFilter = async () => {
           <p class="hour_message">5:26 P.M.</p></span
         >
         <span  class="preview"
-          ><figure class="checks"> <img src=${unactiveChecks}> </figure>
+          ><figure class="checks"> <img src=${unactiveChecks} alt='Unactive_checks'> </figure>
           <p class="message_preview">
             Se pueden editar propiedades
           </p></span
@@ -302,7 +302,7 @@ const printFilter = async () => {
           <p class="hour_message">${preFilterMessages[j].hour}</p></span
         >
         <span  class="preview"
-          ><figure class="checks"> <img src=${unactiveChecks}> </figure>
+          ><figure class="checks"> <img src=${unactiveChecks} alt='Unactive_checks'> </figure>
           <p class="message_preview">
           ${preFilterMessages[j].text}
           </p></span>
