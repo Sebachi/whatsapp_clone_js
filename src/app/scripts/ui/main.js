@@ -193,12 +193,14 @@ export const sendMessage = () => {
     const dateNow = dt.toLocaleString(DateTime.DATE_SHORT)
     const newMessage = input_message.value
     const idReceptorNum = Number(idReceptor)
+    const status = "unactive"
     let prototypeMessage = {
       "receptor": idReceptorNum,
       "emisor": identification(),
       "text": newMessage,
       "date": dateNow,
       "hour": hournow,
+      "status": status,
     }
     const pepino = prototypeMessage
     await postMessage(pepino)
