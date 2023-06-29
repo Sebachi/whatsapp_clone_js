@@ -411,9 +411,16 @@ input::placeholder {
   height: 42px;
   font-size: 14px;
 }
-
+#sent_button{
+  border: 1px blue solid;
+  width: 34px;
+  display: flex;
+  justify-content: center;
+}
 #sent_button img {
-  width: 22px;
+  object-fit: contain;
+  width: 14px;
+  
 }
 
 .pollito {

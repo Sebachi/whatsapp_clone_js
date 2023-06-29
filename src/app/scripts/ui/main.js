@@ -47,8 +47,7 @@ export const printUsers = async () => {
     user_icon.src = users[userId - 1].userImage;
 
     for (let i = 0; i < users.length; i++) {
-
-      chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].messageId}" name="${users[i].messageId}" data-id="${users[i].messageId}">
+      chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].id}" name="${users[i].id}" data-id="${users[i].id}">
         <div class="contact-icon"
           ><img alt='user_profileImg' src="${users[i].userImage}" alt=""
         /></div>
@@ -269,7 +268,7 @@ const printFilter = async () => {
   for (let i = 0; i < preFilterUsers.length; i++) {
     if (((preFilterUsers[i].name).toLowerCase()).includes(searchText)) {
       searchUsersContainer.innerHTML += `
-      <div class="chat__container" id="message${preFilterUsers[i].messageId}" name="${preFilterUsers[i].messageId}" data-id="${preFilterUsers[i].messageId}">
+      <div class="chat__container" id="message${preFilterUsers[i].id}" name="${preFilterUsers[i].id}" data-id="${preFilterUsers[i].id}">
       <div class="contact-icon"
         ><img alt='Profile_pic' src="${preFilterUsers[i].userImage}" alt=""
       /></div>

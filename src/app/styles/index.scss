@@ -1,18 +1,21 @@
 @import 'var.scss';
 @import 'main.scss';
+@import 'modals.scss';
 
 body {
-  background-color: var(--background-primary);
+  background-color: $background_primary;
   font-family: Helvetica;
 }
-
+// LOGIN
 .bodySignUp {
-  background-color: var(--background-primary);
+  background-color: $background_primary;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 #signUp {
   display: flex;
   flex-direction: column;
@@ -27,36 +30,40 @@ body {
   margin: 40px;
   width: 80vw;
   color: #fff;
-  
+  min-width: 200px;
+  & h2{
+    color: $green_pasive;
+    margin: 0;
+  }
 }
 
-h2 {
-  color: var(--green-pasive);
-  margin: 0;
-}
 
-.input {
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    background-color: var(--background-secondary);
-    color: var(--font-placeholder);
-    padding: 10px;
-}
+
 
 .input::placeholder {
   color: var(--font-placeholder);
 }
 
 .inputContainer {
+  
   height: 32px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  min-width: 100px;
   gap: 10px;
+  margin: 10px;
   justify-content: center;
   align-items: center;
 }
-
+.input {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: $background_secondary;
+  color: var(--font-placeholder);
+  padding: 10px;
+ 
+}
 .btnSubmit {
   background-color: #27ae60;
   border: none;
@@ -82,6 +89,8 @@ h2 {
     align-items: center;
     gap: 20px;
     justify-content: flex-end;
+    flex-wrap: wrap;
+    margin-right: 40px;
 }
 // SIGN UP
 .bodySignUp2{
@@ -97,19 +106,13 @@ h2 {
     padding: 30px;
     border-radius: 20px;
     font-family:Helvetica;
-    min-width: 100px;
+    min-width: 300px;
     margin: 40px;
     width: 80vw;
     color: #fff;
-    
     & h2{
         text-align: center;
         margin-bottom: 20px;
-    }
-    & input{
-        height: 20px;
-        width: 300px;
-        padding: 10px;
     }
     & button{
         margin: 20px;
@@ -121,6 +124,25 @@ h2 {
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    width: 80%;
+    min-width: 200px;
+   
+    & .input {
+      padding: 10px;
+      width: 80%;
+      max-width: 400px;
+      min-width: 150px;
+    }
+    & .inputContainer{
+      gap: 15px;
+      margin-bottom: 30px;
+      width: 80%;
+      min-width: 150px;
+    }
+    & h2 {
+      color: $green_pasive;
+      
+    }
 }
 #return_login{
     align-self: start;
@@ -186,4 +208,23 @@ h2 {
 
 .hidden {
   display: none;
+}
+#newImage{
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  width: 300px;
+  font-weight: 100;
+  color: var(--font-placeholder);
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover{
+    color: #fff;
+  }
+}
+#newImage::after{
+  background-color: $background_secondary;
+  font-size: 16px;
 }

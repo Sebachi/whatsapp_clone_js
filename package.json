@@ -44,6 +44,6 @@
     "axios": "^1.4.0",
     "imagemin-webp": "^8.0.0",
     "luxon": "^3.3.0",
-    "sweetalert": "^2.1.2"
+    "sweetalert2": "^11.7.12"
   }
 }

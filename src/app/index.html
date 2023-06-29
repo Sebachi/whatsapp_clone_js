@@ -33,13 +33,13 @@
 
   <!-- HASTA AQUI ES LOGIN -->
   <div class="bodySignUp2 style-4 hidden" id="bodySignUp2">
-    <main id="signUpReal" class=" signUp_container">
+    <main id="signUpReal" class="signUp_container">
       <button id="return_login" class="btn_signup"><img src="/src/assets/arrow-left-com.svg" alt="arrow_left"></button>
       <form id="signUpRealForm">
         <h2 class="tittlesignup">User register</h2>
         <label class="inputContainer">
           <span class="inputSpan"> Cell number: </span>
-          <input type="number" placeholder="Write a number for your register" class="input" id="newUser">
+          <input type="number" placeholder="Write a number for your register" class="input" id="newNumber">
         </label>
         <label class="inputContainer">
           <span class="inputSpan"> Name: </span>
@@ -47,13 +47,18 @@
         </label>
         <label class="inputContainer">
           <span class="inputSpan"> Profile Image: </span>
-          <input type="url" placeholder="Insert url with an image" class="input" id="newImage">
+          <!-- <input type="url" placeholder="Insert url with an image" class="input" id="newImage"> -->
+          <span id="newImage" class="btn_signup">File loader</span>
+        </label>
+        <label class="inputContainer">
+          <span class="inputSpan"> Iconic Phrase: </span>
+          <input type="text" placeholder="Write your personal Phrase" class="input" id="newPhrase">
         </label>
         <label class="inputContainer">
           <span class="inputSpan"> Password: </span>
           <input type="password" placeholder="Write your new password" class="input" id="newPassword">
         </label>
-        <button type="submit" class="btnSubmit btn_signup" id="register">Sign up</button>
+        <button type="submit" class="btn_signup" id="register">Sign up</button>
       </form>
     </main>
   </div>
@@ -141,7 +146,7 @@
         <button><img src="/src/assets/emoji-com.svg" alt="happy-face"></button>
         <button><img src="/src/assets/attach-com.svg" alt="attach"></button>
         <input type="text" id="input_message" placeholder="Escribe un mensaje aqui">
-        <button id="sent_button"><img src="/src/assets/sent.svg" alt="sent_icon"></button>
+        <button id="sent_button"><img src="/src/assets/sent.svg" alt="sent"></button>
       </footer>
     </section>
 
