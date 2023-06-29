@@ -34,10 +34,12 @@ const profileChanger = async () => {
   const { value: file } = await Swal.fire({
     title: "Select image profile",
     input: "file",
+    background: "#3b4a54",
+    color: "#d1d7db",
+    confirmButtonText: 'Upload',
     customClass: {
       confirmButton: "confirm_button",
     },
-    allowOutsideClick: false,
     inputAttributes: {
       accept: "image/*",
       "aria-label": "Upload your profile picture",
@@ -66,10 +68,8 @@ const profileChanger = async () => {
 
 const new_user_image = new Promise((resolve, reject) => {
   const handleClick = async () => {
-    console.log("llegue hasta el listener wuju");
     try {
       const imgPromise = await profileChanger();
-      console.log(imgPromise);
       resolve(imgPromise);
     } catch (error) {
       console.log(error);
@@ -97,17 +97,15 @@ const creatorUser = async () => {
   ) {
     notValues();
   } else {
-    console.log(newNumber.value, newPassword.value, newPhrase.value);
-
     try {
     const users = await getusers();
       for (let i = 0; i < users.length; i++) {
-        if (users[i]["user_name"] == newName.value) {
-          return wrongNumber();
+        if (Number(users[i].user_name) == newNumber.value) {
+          console.log(users[i].user_name);
+       await wrongNumber();
         }
       }
       const userImgPromise = await new_user_image;
-      console.log(await userImgPromise);
       const userImg = await userImgPromise;
       const newUser = {
         name: newName.value,
@@ -156,8 +154,8 @@ const confirm_Sign_up = () => {
   });
 };
 
-const wrongNumber = () => {
-  Swal.fire({
+const wrongNumber = async () => {
+  await Swal.fire({
     title:
       "Sorry, your phone number is already in our base, try with another number.",
     color: "#d1d7db",
@@ -170,6 +168,10 @@ const wrongNumber = () => {
       confirmButton: "confirm_button",
       title: "title_alert",
     },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.reload();
+    }
   });
 };
 
@@ -186,7 +188,12 @@ const notImage = () => {
       confirmButton: "confirm_button",
       title: "title_alert",
     },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.reload();
+    }
   });
+  ;
 };
 const notValues = () => {
   Swal.fire({
