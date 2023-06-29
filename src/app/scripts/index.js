@@ -10,6 +10,7 @@ import { dropMenu } from "./ui/dropmenu.js";
 import { printSign_up } from "./services/sign_up.js";
 import { fnLog_out } from "./services/log_out.js";
 import { delete_edit } from "./services/delete_edit.js";
+import { menuRemover } from "./services/menuRemover.js";
 
 const d = document
 // const input_message = d.getElementById("input_message")
@@ -31,5 +32,5 @@ d.addEventListener('DOMContentLoaded', async () => {
   quitMessage()
 
 })
-
+menuRemover()
 returnLogin()

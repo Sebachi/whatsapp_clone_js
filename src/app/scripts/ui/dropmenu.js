@@ -2,7 +2,10 @@ const d = document
 import { deleteMessage } from "../services/request";
 import { patchMessage } from "../services/request";
 import { getMessageForEdition } from "../services/request";
+import { printMessage } from "./main";
 const Swal = require("sweetalert2");
+
+
 
 export const dropMenu = () => {
     const handleDropdown = (event) => {
@@ -74,13 +77,14 @@ export const dropMenu = () => {
       title: "title_alert",
     },
   }).then(async (result) => {
+    const sendId = localStorage.getItem('sendId')
     if (result.isConfirmed) {
       await deleteMessage(messageId)
       Swal.fire(
         'Deleted!',
         'Your message has been deleted.',
         'success',
-        location.reload()
+        printMessage(sendId)
       )
     }
   })}
@@ -107,13 +111,17 @@ const modalEdit = async (messageId) => {
       showCancelButton: true
     })
     
-    if (text) {
-
-    await patchMessage(messageId, text)
+    if (text) { 
+      const sendId = localStorage.getItem('sendId')
+      const newText = {
+        text: text,
+      }
+    await patchMessage(messageId, newText)
      Swal.fire(
       'Done!',
       'Your message has been edited.',
       'success',
+      printMessage(sendId)
     )
     }
 

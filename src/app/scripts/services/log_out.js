@@ -1,6 +1,7 @@
 const d = document
 const  log_out = d.getElementById('log_out')
 
+log_out.classList.add('menuTrigger2')
 const btnLog_out = () =>  {log_out.addEventListener('click', ()=> {
     const dropdownLog_out = log_out.querySelector('.dropdownLog_out');
     if (dropdownLog_out) {
@@ -9,6 +10,7 @@ const btnLog_out = () =>  {log_out.addEventListener('click', ()=> {
     } else {
       const dropdownLog_out = document.createElement('ul');
       dropdownLog_out.classList.add('dropdownLog_out');
+      dropdownLog_out.classList.add('async_menu');
       // Crear los elementos del menú
       const menuItem1 = document.createElement('li');
       menuItem1.textContent = 'Cerrar sesion';
@@ -29,9 +31,11 @@ export const fnLog_out = async () => {
       if(target !== null){
         localStorage.removeItem("userPass")
         localStorage.removeItem("userId")
+        localStorage.removeItem("sendId")
         location.reload()
       }
     });
   };
+
 
 

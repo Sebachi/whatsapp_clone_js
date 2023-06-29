@@ -57,10 +57,8 @@ export  const getMessage = async () => {
 export const patchMessage = async (idMessage, messageEdited) => {
   try {
   
-    const response = await axios.patch(`${URL_API}/users/${idMessage}`, {
-      text: messageEdited
-    });
-    return response.data;
+    await axios.patch(`${URL_API}/messages/${idMessage}`, messageEdited);
+    
   } catch (error) {
     console.log(error);
     return  error;
