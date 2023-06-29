@@ -21,6 +21,16 @@ export  const getMessage = async () => {
     }
   }
 
+  export  const getMessageForEdition = async (messageID) => {
+    try {
+      const { data } = await axios.get(`${URL_API}${'/messages'}/${messageID}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+      return  error;
+    }
+  }  
+
   export  const postMessage = async (message) => {
     try {
       await axios.post(`${URL_API}${'/messages'}`,
@@ -44,11 +54,23 @@ export  const getMessage = async () => {
     }
   }
 
+export const patchMessage = async (idMessage, messageEdited) => {
+  try {
+  
+    const response = await axios.patch(`${URL_API}/users/${idMessage}`, {
+      text: messageEdited
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return  error;
+  }
+}
+
+
 export const deleteMessage = async (messageId) => {
   try {
-    await axios.delete(`${URL_API}${'/messages'}`,
-    messageId
-    )
+    await axios.delete(`${URL_API}${'/messages'}/${messageId}`)
   } catch (error) {
     console.log(error);
     return  error;

@@ -1,4 +1,8 @@
 const d = document
+import { deleteMessage } from "../services/request";
+import { patchMessage } from "../services/request";
+import { getMessageForEdition } from "../services/request";
+const Swal = require("sweetalert2");
 
 export const dropMenu = () => {
     const handleDropdown = (event) => {
@@ -16,7 +20,7 @@ export const dropMenu = () => {
         } else {
           const dropdownMenu = document.createElement('ul');
           dropdownMenu.classList.add('dropdown-menu');
-  
+          dropdownMenu.classList.add('async_menu');
           // Crear los elementos del menú
           const menuItem1 = document.createElement('li');
           menuItem1.textContent = 'Editar';
@@ -31,6 +35,19 @@ export const dropMenu = () => {
           // Agregar el menú desplegable como hijo del elemento target
           target.appendChild(dropdownMenu);
           target.classList.remove('down_arrow_active');
+          //Edit y delete
+          dropdownMenu.addEventListener('click', (e)=>{
+            const targetDelete = e.target.closest('.delete_btn') || null;
+            if (targetDelete !== null) {
+              const messageId = e.target.closest('.message').getAttribute("id")
+              modalDelete(messageId)
+          }
+            const targetEdit = e.target.closest('.edit_btn') || null;
+            if (targetEdit !== null) {
+              const messageId = e.target.closest('.message').getAttribute("id")
+              modalEdit(messageId)
+          }
+          })
         }
       }
     }
@@ -39,3 +56,65 @@ export const dropMenu = () => {
     message__container.removeEventListener('click', handleDropdown);
     message__container.addEventListener('click', handleDropdown);
   };
+
+
+ const modalDelete =  (messageId) =>  {Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    background: "#3b4a54",
+    showCancelButton: true,
+    color: "#d1d7db",
+    confirmButtonColor: "#63cb77",
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!',
+    allowOutsideClick: false,
+    customClass: {
+      confirmButton: "confirm_button",
+      title: "title_alert",
+    },
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      await deleteMessage(messageId)
+      Swal.fire(
+        'Deleted!',
+        'Your message has been deleted.',
+        'success',
+        location.reload()
+      )
+    }
+  })}
+
+const modalEdit = async (messageId) => {
+    const data = await getMessageForEdition(messageId)
+    const textmessage = data.text
+    const { value: text } = await Swal.fire({
+      input: 'textarea',
+      inputLabel: 'Edit your message',
+      confirmButtonText: 'Edit!',
+      color: "#d1d7db",
+      background: "#3b4a54",
+      confirmButtonColor: "#63cb77",
+      allowOutsideClick: false,
+      inputValue: textmessage,
+      customClass: {
+        confirmButton: "confirm_button",
+        inputLabel: "title_alert",
+      },
+      inputAttributes: {
+        'aria-label': 'Edit your message here'
+      },
+      showCancelButton: true
+    })
+    
+    if (text) {
+
+    await patchMessage(messageId, text)
+     Swal.fire(
+      'Done!',
+      'Your message has been edited.',
+      'success',
+    )
+    }
+
+  }

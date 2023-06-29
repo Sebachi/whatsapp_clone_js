@@ -27,10 +27,10 @@ button {
   height: auto;
 }
 
-img {
-  width: 24px;
-  height: 24px;
-}
+ img {
+   width: 24px;
+   height: 24px;
+ }
 
 input {
   border: none;
@@ -93,11 +93,15 @@ input {
 
 .user-icon img,
 .contact-icon img {
-  height: 90%;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
   object-fit: contain;
 }
+
 .user-icon img{
-  width: 80%;
+  height: 100%;
+  width: 100%;
 }
 #icons-chat {
   display: flex;
@@ -412,16 +416,19 @@ input::placeholder {
   font-size: 14px;
 }
 #sent_button{
-  border: 1px blue solid;
   width: 34px;
   display: flex;
   justify-content: center;
 }
 #sent_button img {
-  object-fit: contain;
-  width: 14px;
-  
+  width: 100%;
+  height: 100%;
+  &:hover{
+    transform: scale(1.2);
+
+  }
 }
+
 
 .pollito {
   background-color: gray;
