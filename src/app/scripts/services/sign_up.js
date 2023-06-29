@@ -50,6 +50,8 @@ const profileChanger = async () => {
     const imgPromise = new Promise((resolve, reject) => {
       reader.onload = (e) => {
         Swal.fire({
+          background: "#3b4a54",
+          color: "#d1d7db",
           title: "Your uploaded picture",
           imageUrl: e.target.result,
           imageAlt: "The uploaded picture",
