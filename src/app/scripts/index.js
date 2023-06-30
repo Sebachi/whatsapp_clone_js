@@ -11,6 +11,7 @@ import { printSign_up } from "./services/sign_up.js";
 import { fnLog_out } from "./services/log_out.js";
 import { delete_edit } from "./services/delete_edit.js";
 import { menuRemover } from "./services/menuRemover.js";
+import { getNewMessage } from "./services/constantmessage.js";
 
 const d = document
 // const input_message = d.getElementById("input_message")

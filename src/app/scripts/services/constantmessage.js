@@ -5,7 +5,7 @@ var mensajesActuales = [];
 
 // Definir una función para obtener los nuevos mensajes
 export function getNewMessage() {
-  axios.get('/ruta-para-obtener-mensajes')
+  axios.get('https://whatsapclone-backend-production.up.railway.app/messages')
     .then(function (response) {
       var nuevosMensajes = response.data;
 
