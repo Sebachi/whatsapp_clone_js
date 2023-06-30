@@ -1,5 +1,5 @@
 import { printMessage, printUsers } from "../ui/main";
-
+import axios from "axios";
 // Definir una variable para almacenar los mensajes actuales
 var mensajesActuales = [];
 
