@@ -23,6 +23,7 @@ d.addEventListener('DOMContentLoaded', async () => {
   
   await sign_in();
   await printUsers();
+  getNewMessage()
   readingChat()
   readingFilter()
   fnLog_out()
@@ -34,3 +35,4 @@ d.addEventListener('DOMContentLoaded', async () => {
 })
 menuRemover()
 returnLogin()
+

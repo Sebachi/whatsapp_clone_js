@@ -2,7 +2,7 @@ const d = document
 import { deleteMessage } from "../services/request";
 import { patchMessage } from "../services/request";
 import { getMessageForEdition } from "../services/request";
-import { printMessage } from "./main";
+import { printMessage, printUsers } from "./main";
 const Swal = require("sweetalert2");
 
 
@@ -84,7 +84,8 @@ export const dropMenu = () => {
         'Deleted!',
         'Your message has been deleted.',
         'success',
-        printMessage(sendId)
+        printMessage(sendId),
+        printUsers(),
       )
     }
   })}
@@ -121,7 +122,8 @@ const modalEdit = async (messageId) => {
       'Done!',
       'Your message has been edited.',
       'success',
-      printMessage(sendId)
+      printMessage(sendId),
+      printUsers(),
     )
     }
 

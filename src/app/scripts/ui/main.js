@@ -53,7 +53,7 @@ export const printUsers = async () => {
     const users = await getusers()
     user_icon.src = users[userId - 1].userImage;
     const messages = await getMessage()
-
+    chats__container.innerHTML = ``
     for (let i = 0; i < users.length; i++) {
       let lastMessage, lastHour, lastStatus;
       for (let j = 0; j < messages.length; j++) {
