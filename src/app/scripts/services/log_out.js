@@ -1,3 +1,5 @@
+import { patchFlagUser } from "./request"
+
 const d = document
 const  log_out = d.getElementById('log_out')
 
@@ -26,12 +28,18 @@ const btnLog_out = () =>  {log_out.addEventListener('click', ()=> {
 export const fnLog_out = async () => {
   btnLog_out()
     // Eliminar el listener de eventos antes de agregarlo nuevamente
-    log_out.addEventListener('click', (event) =>{
+    log_out.addEventListener('click', async (event) =>{
       const target = event.target.closest('.log_out_btn') || null
       if(target !== null){
         localStorage.removeItem("userPass")
+        let userId = localStorage.getItem('userId')
+        const newFlag = {
+          flag: false
+        }
+        await patchFlagUser(userId, newFlag)
         localStorage.removeItem("userId")
         localStorage.removeItem("sendId")
+
         location.reload()
       }
     });

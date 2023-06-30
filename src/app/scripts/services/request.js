@@ -96,3 +96,12 @@ export const patchStatusMessage = async (idUser, idOtherUser) => {
     return error;
   }
 };
+
+export const patchFlagUser = async (idUser, newFlag) => {
+  try {
+    await axios.patch(`${URL_API}/users/${idUser}`, newFlag);
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
