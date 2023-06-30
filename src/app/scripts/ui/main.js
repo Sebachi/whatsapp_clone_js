@@ -23,6 +23,7 @@ import magifyingglass from '../../../assets/magnifying-glass-svgrepo-com.svg';
 import dots from '../../../assets/3dots-com.svg';
 import unactiveChecks from "../../../assets/check-unactive.svg"
 import activeChecks from "../../../assets/check-active.svg"
+import emptyChecks from "../../../assets/empty-svgrepo-com.svg"
 import down_arrow from "../../../assets/arrow-down.svg"
 import { DateTime } from "luxon";
 import left_arrow from "../../../assets/arrow-left-com.svg"
@@ -38,6 +39,12 @@ const identification = () => {
 }
 identification()
 
+const receptorIdentification = () => {
+  let sendId = JSON.parse(localStorage.getItem("sendId"))
+  sendId = Number(sendId)
+  return sendId
+}
+
 //PrintUsers
 
 export const printUsers = async () => {
@@ -45,8 +52,25 @@ export const printUsers = async () => {
     const userId = identification()
     const users = await getusers()
     user_icon.src = users[userId - 1].userImage;
+    const messages = await getMessage()
 
     for (let i = 0; i < users.length; i++) {
+      let lastMessage, lastHour, lastStatus;
+      for (let j = 0; j < messages.length; j++) {
+        if ((messages[j].emisor === users[i].id && messages[j].receptor === userId) || (messages[j].emisor === userId && messages[j].receptor === users[i].id)) {
+          lastMessage = messages[j].text
+          lastHour = messages[j].hour
+          lastStatus = messages[j].status
+        }
+      }
+      if (lastStatus == "active") {
+        lastStatus = activeChecks
+      } else if (lastStatus == "unactive") {
+        lastStatus = unactiveChecks
+      } else if (!lastStatus) {
+        lastStatus = emptyChecks
+      }
+
       chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].id}" name="${users[i].id}" data-id="${users[i].id}">
         <div class="contact-icon"
           ><img alt='user_profileImg' src="${users[i].userImage}" alt=""
@@ -54,12 +78,12 @@ export const printUsers = async () => {
         <div class="contact__inf_chat">
           <span class="name_hour"
             ><p class="contact_name">${users[i].name}</p>
-            <p class="hour_message">5:26 P.M.</p></span
+            <p class="hour_message">${lastHour || ""}</p></span
           >
           <span  class="preview"
-            ><figure class="checks"> <img alt='Unactive_checks' src=${unactiveChecks}> </figure>
+            ><figure class="checks"> <img alt='Unactive_checks' src=${lastStatus}> </figure>
             <p class="message_preview">
-              Se pueden editar propiedades
+              ${lastMessage || ""}
             </p></span
           >
         </div>
@@ -68,8 +92,6 @@ export const printUsers = async () => {
   }
 
 }
-
-
 
 
 //PrintMessage
@@ -81,6 +103,8 @@ export const printMessage = async (callback) => {
   const message = await getMessage()
   const userId = identification()
   const userlist = await getusers()
+  const receptorId = receptorIdentification()
+  console.log(`el recpetor es ${userId} y el emisor es ${receptorId}`)
   message__header.innerHTML = ` <button class="backArrow" id="backArrow"><img src=${left_arrow}
     alt="left_arrow">
     </button>
@@ -98,18 +122,20 @@ export const printMessage = async (callback) => {
         `
   message__container.innerHTML = ``
   for (let i = 0; i < message.length; i++) {
-    if (userId == message[i].receptor && callback == message[i].emisor) {
-      message__container.innerHTML += `  <div class="message-received message" id='${message[i].id}'>
+    if ((message[i].emisor === receptorId && message[i].receptor === userId) || (message[i].emisor === userId && message[i].receptor === receptorId)) {
+      if (message[i].receptor == userId) {
+        message__container.innerHTML += `  <div class="message-received message" id='${message[i].id}'>
            <div><p >${message[i].text}</p> <button class="down_arrow menuTrigger down_arrow_active"><img alt='down_arrow'src=${down_arrow}></button></div> 
             <div class='message_widgets'> <img class='message_flag' alt='message_flag' src=${unactiveChecks}>  <span class='hour_message'>${message[i].hour}</span> </div>
             </div>
       `
-    } else if (userId == message[i].emisor && callback == message[i].receptor) {
-      message__container.innerHTML += `  <div class="message-sended message" id='${message[i].id}'>
+      } else {
+        message__container.innerHTML += `  <div class="message-sended message" id='${message[i].id}'>
               <div><p >${message[i].text}</p> <button class="down_arrow menuTrigger down_arrow_active"><img alt='down_arrow' src=${down_arrow}></button></div>
               <div class='message_widgets'> <img alt='message_flag' class='message_flag' src=${unactiveChecks}>  <span class='hour_message'>${message[i].hour}</span> </div>
               </div>
         `
+      }
     }
     scrollToBottom()
   }
@@ -138,8 +164,8 @@ export const readingChat = async () => {
     const clickedElement = event.target.closest('.chat__container') || null;
 
     if (!(clickedElement === null)) {
-    const sendId =  clickedElement.getAttribute('data-id')
-    localStorage.setItem("sendId", sendId)
+      const sendId = clickedElement.getAttribute('data-id')
+      localStorage.setItem("sendId", sendId)
       printChat(clickedElement);
     }
   })
@@ -290,8 +316,14 @@ const printFilter = async () => {
         `
     } //primer if
   }
+  //aqui sigo
+  const receptorId = receptorIdentification()
+  const userId = identification()
+
   for (let j = 0; j < preFilterMessages.length; j++) {
-    if ((preFilterMessages[j].text) && (preFilterUsers[preFilterMessages[j].emisor])) {
+
+    if (preFilterMessages[j].emisor === userId || preFilterMessages[j].receptor === userId) {
+
       if (((preFilterMessages[j].text).toLowerCase()).includes(searchText)) {
         searchMessagesContainer.innerHTML += `
       <div class="filtered__message" id="message${preFilterMessages[j].id}" data-id="${(preFilterMessages[j].emisor == identification()) ? preFilterMessages[j].receptor : preFilterMessages[j].emisor}">
@@ -310,6 +342,7 @@ const printFilter = async () => {
       </div>
     </div>
       `
+
       }
     }
   }
