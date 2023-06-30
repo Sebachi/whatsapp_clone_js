@@ -1,33 +1,31 @@
-import { printMessage, printUsers } from "../ui/main";
+import { printMessage, printUsers, receptorIdentification } from "../ui/main";
 import axios from "axios";
-// Definir una variable para almacenar los mensajes actuales
-var mensajesActuales = [];
-let userpass = JSON.parse(localStorage.getItem("userPass"))
-// Definir una función para obtener los nuevos mensajes
+
+var currentMessage = [];
+let userpass = JSON.parse(localStorage.getItem("userPass"));
+
 export function getNewMessage() {
-    if (userpass === true) {
-  axios.get('https://whatsapclone-backend-production.up.railway.app/messages')
-    .then(function (response) {
-        const sendId = localStorage.getItem('sendId')
-      var nuevosMensajes = response.data;
+  if (userpass === true) {
+    axios
+      .get("https://whatsapclone-backend-production.up.railway.app/messages")
+      .then(function (response) {
+        var newMessage = response.data;
+        let sendId = JSON.parse(localStorage.getItem("sendId")) || null;
+        if (sendId !== null) {
+          if (JSON.stringify(newMessage) !== JSON.stringify(currentMessage)) {
+            console.log('lo estoy haciendo');
+            printMessage(sendId);
+          
+            printUsers();
+          }
 
-      // Verificar si los mensajes recibidos son diferentes a los actuales
-      if (JSON.stringify(nuevosMensajes) !== JSON.stringify(mensajesActuales)) {
-        // Ejecutar la función si los mensajes son diferentes
-        printMessage(sendId)
-        printUsers()
-      }
+          currentMessage = newMessage;
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+}
 
-      // Actualizar los mensajes actuales
-      mensajesActuales = nuevosMensajes;
-      
-      // Actualizar la interfaz de usuario con los nuevos mensajes
-      // ...
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-}}
-
-// Establecer un intervalo para realizar las consultas periódicas
-setInterval(getNewMessage, 3000); // Consulta cada 5 segundos
+setInterval(getNewMessage, 3000);

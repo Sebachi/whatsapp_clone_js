@@ -39,7 +39,7 @@ const identification = () => {
 }
 identification()
 
-const receptorIdentification = () => {
+export const receptorIdentification = () => {
   let sendId = JSON.parse(localStorage.getItem("sendId"))
   sendId = Number(sendId)
   return sendId
@@ -97,6 +97,7 @@ export const printUsers = async () => {
 //PrintMessage
 let idReceptor = ``
 export const printMessage = async (callback) => {
+ 
   const scrollToBottom = () => {
     message__container.scrollTop = message__container.scrollHeight;
   }
@@ -149,7 +150,7 @@ const printChat = (click) => {
   const messageID = click.getAttribute("id");
   const chatId = messageID.match(/\d+/)[0];
   printMessage(chatId);
-
+  message__container.setAttribute("data-id", receptorIdentification())
   idReceptor = chatId
   console.log(idReceptor);
 
