@@ -5,7 +5,7 @@ var currentMessage = [];
 let userpass = JSON.parse(localStorage.getItem("userPass"));
 
 export function getNewMessage() {
-  if (userpass === true) {
+  if (userpass) {
     axios
       .get("https://whatsapclone-backend-production.up.railway.app/messages")
       .then(function (response) {
