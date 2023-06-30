@@ -28,4 +28,4 @@ export function getNewMessage() {
 }
 
 // Establecer un intervalo para realizar las consultas periódicas
-setInterval(obtenerNuevosMensajes, 5000); // Consulta cada 5 segundos
+setInterval(getNewMessage, 5000); // Consulta cada 5 segundos
