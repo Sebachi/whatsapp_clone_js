@@ -4,8 +4,8 @@ const formContainer = document.getElementById("signUp");
 const userInput = document.getElementById("user");
 const passwordInput = document.getElementById("password");
 const Swal = require("sweetalert2");
-
-
+import { DateTime } from "luxon";
+const dt = DateTime.local().setZone("America/Bogota");
 
 
 const sign_in =  async () => {
@@ -36,8 +36,11 @@ const sign_in =  async () => {
       wrongpassword();
     } else  {
       let userId = localStorage.getItem('userId')
+  
+      const dateNow = dt.toLocaleString(DateTime.DATETIME_SHORT)
       const newFlag = {
-        flag: true
+        flag: true,
+        date: dateNow
       }
      await patchFlagUser(userId, newFlag)
       location.reload()
