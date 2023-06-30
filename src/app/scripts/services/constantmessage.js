@@ -5,8 +5,10 @@ var mensajesActuales = [];
 
 // Definir una función para obtener los nuevos mensajes
 export function getNewMessage() {
+    
   axios.get('https://whatsapclone-backend-production.up.railway.app/messages')
     .then(function (response) {
+        const sendId = localStorage.getItem('sendId')
       var nuevosMensajes = response.data;
 
       // Verificar si los mensajes recibidos son diferentes a los actuales
