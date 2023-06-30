@@ -24,7 +24,7 @@ d.addEventListener('DOMContentLoaded', async () => {
   
   await sign_in();
   await printUsers();
-  getNewMessage()
+  // getNewMessage()
   readingChat()
   readingFilter()
   fnLog_out()

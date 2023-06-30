@@ -1,5 +1,7 @@
 // export const URL_API = "https://backend-whatsappclone.onrender.com";
-export const URL_API = "https://whatsapclone-backend-production.up.railway.app"
+
+export const URL_API = "http://localhost:3000"
+// export const URL_API = "https://whatsapclone-backend-production.up.railway.app"
 import axios from "axios";
 export const getusers = async () => {
     try {

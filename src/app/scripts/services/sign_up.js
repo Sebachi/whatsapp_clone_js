@@ -23,6 +23,7 @@ export const printSign_up = () => {
     bodySignUp.classList.add("hidden");
   });
   return_login.addEventListener("click", () => {
+    signUpRealForm.reset()
     bodySignUp.classList.remove("hidden");
     bodySignUp2.classList.add("hidden");
   });
@@ -105,9 +106,12 @@ const creatorUser = async () => {
         if (Number(users[i].user_name) == newNumber.value) {
           console.log(users[i].user_name);
        await wrongNumber();
+       isNumberValid = false;
+       break;
         }
       }
-      const userImgPromise = await new_user_image;
+      if (isNumberValid)
+      {const userImgPromise = await new_user_image;
       const userImg = await userImgPromise;
       const newUser = {
         name: newName.value,
@@ -118,7 +122,7 @@ const creatorUser = async () => {
         phrase: newPhrase.value,
       };
       await postUser(newUser);
-      confirm_Sign_up();
+      confirm_Sign_up();}
     } catch (error) {
       console.log(error);
     }
@@ -172,7 +176,6 @@ const wrongNumber = async () => {
     },
   }).then((result) => {
     if (result.isConfirmed) {
-      location.reload();
     }
   });
 };
