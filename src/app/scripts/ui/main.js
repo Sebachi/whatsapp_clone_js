@@ -105,7 +105,6 @@ export const printMessage = async (callback) => {
   const userId = identification()
   const userlist = await getusers()
   const receptorId = receptorIdentification()
-  console.log(`el recpetor es ${userId} y el emisor es ${receptorId}`)
   message__header.innerHTML = ` <button class="backArrow" id="backArrow"><img src=${left_arrow}
     alt="left_arrow">
     </button>
@@ -122,18 +121,27 @@ export const printMessage = async (callback) => {
         </div>
         `
   message__container.innerHTML = ``
+ 
   for (let i = 0; i < message.length; i++) {
+    let lastStatus = message[i].status
+    if (lastStatus == "active") {
+      lastStatus = activeChecks
+    } else if (lastStatus == "unactive") {
+      lastStatus = unactiveChecks
+    } else if (!lastStatus) {
+      lastStatus = emptyChecks
+    }
     if ((message[i].emisor === receptorId && message[i].receptor === userId) || (message[i].emisor === userId && message[i].receptor === receptorId)) {
       if (message[i].receptor == userId) {
         message__container.innerHTML += `  <div class="message-received message" id='${message[i].id}'>
            <div><p >${message[i].text}</p> <button class="down_arrow menuTrigger down_arrow_active"><img alt='down_arrow'src=${down_arrow}></button></div> 
-            <div class='message_widgets'> <img class='message_flag' alt='message_flag' src=${unactiveChecks}>  <span class='hour_message'>${message[i].hour}</span> </div>
+            <div class='message_widgets'> <img class='message_flag' alt='message_flag' src=${lastStatus}>  <span class='hour_message'>${message[i].hour}</span> </div>
             </div>
       `
       } else {
         message__container.innerHTML += `  <div class="message-sended message" id='${message[i].id}'>
               <div><p >${message[i].text}</p> <button class="down_arrow menuTrigger down_arrow_active"><img alt='down_arrow' src=${down_arrow}></button></div>
-              <div class='message_widgets'> <img alt='message_flag' class='message_flag' src=${unactiveChecks}>  <span class='hour_message'>${message[i].hour}</span> </div>
+              <div class='message_widgets'> <img alt='message_flag' class='message_flag' src=${lastStatus}>  <span class='hour_message'>${message[i].hour}</span> </div>
               </div>
         `
       }
@@ -152,7 +160,7 @@ const printChat = (click) => {
   printMessage(chatId);
   message__container.setAttribute("data-id", receptorIdentification())
   idReceptor = chatId
-  console.log(idReceptor);
+
 
   //se hace invisible la parte de contactos
 
@@ -186,7 +194,6 @@ export const readingFilter = async () => {
       printMessage(chatId);
 
       idReceptor = chatId
-      console.log(idReceptor);
 
       //se hace invisible la parte de contactos
 
@@ -254,7 +261,6 @@ export const sendMessage = () => {
 export const quitMessage = () => {
 
   message__header.addEventListener("click", (event) => {
-    console.log("le diste a la cabeza")
 
     const backClick = event.target.closest('.backArrow') || null;
     if (!(backClick === null)) {
@@ -280,7 +286,6 @@ const printFilter = async () => {
   }
 
   const searchText = (searchInput.value).toLowerCase();
-  console.log(searchText);
   const preFilterUsers = await getusers();
   const preFilterMessages = await getMessage();
   search__container.innerHTML = `

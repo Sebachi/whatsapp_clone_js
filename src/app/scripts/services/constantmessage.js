@@ -1,10 +1,11 @@
 import { printMessage, printUsers, receptorIdentification } from "../ui/main";
 import axios from "axios";
+import { flagMessage } from "./flags";
 
 var currentMessage = [];
 let userpass = JSON.parse(localStorage.getItem("userPass"));
 
-export function getNewMessage() {
+export  function getNewMessage() {
   if (userpass) {
     axios
       .get("https://whatsapclone-backend-production.up.railway.app/messages")
@@ -12,12 +13,10 @@ export function getNewMessage() {
         var newMessage = response.data;
         let sendId = JSON.parse(localStorage.getItem("sendId")) || null;
         if (sendId !== null) {
-          if (JSON.stringify(newMessage) !== JSON.stringify(currentMessage)) {
-            console.log('lo estoy haciendo');
-            printMessage(sendId);
-          
-            printUsers();
-          }
+          flagMessage()
+          printUsers();
+          printMessage(sendId)
+           
 
           currentMessage = newMessage;
         }
@@ -28,4 +27,4 @@ export function getNewMessage() {
   }
 }
 
-setInterval(getNewMessage, 3000);
+setInterval(getNewMessage, 1000);

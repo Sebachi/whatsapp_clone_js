@@ -12,6 +12,7 @@ import { fnLog_out } from "./services/log_out.js";
 import { delete_edit } from "./services/delete_edit.js";
 import { menuRemover } from "./services/menuRemover.js";
 import { getNewMessage } from "./services/constantmessage.js";
+import { flagMessage } from "./services/flags.js";
 
 const d = document
 // const input_message = d.getElementById("input_message")
@@ -25,6 +26,7 @@ d.addEventListener('DOMContentLoaded', async () => {
   await sign_in();
   await printUsers();
   // getNewMessage()
+  // flagMessage()
   readingChat()
   readingFilter()
   fnLog_out()
