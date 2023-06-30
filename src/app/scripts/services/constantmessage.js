@@ -2,10 +2,10 @@ import { printMessage, printUsers } from "../ui/main";
 import axios from "axios";
 // Definir una variable para almacenar los mensajes actuales
 var mensajesActuales = [];
-
+let userpass = JSON.parse(localStorage.getItem("userPass"))
 // Definir una función para obtener los nuevos mensajes
 export function getNewMessage() {
-    
+    if (userpass === true) {
   axios.get('https://whatsapclone-backend-production.up.railway.app/messages')
     .then(function (response) {
         const sendId = localStorage.getItem('sendId')
@@ -27,7 +27,7 @@ export function getNewMessage() {
     .catch(function (error) {
       console.log(error);
     });
-}
+}}
 
 // Establecer un intervalo para realizar las consultas periódicas
-setInterval(getNewMessage, 5000); // Consulta cada 5 segundos
+setInterval(getNewMessage, 3000); // Consulta cada 5 segundos
