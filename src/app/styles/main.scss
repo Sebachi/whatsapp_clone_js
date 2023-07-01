@@ -340,6 +340,11 @@ input::placeholder {
   display: flex;
   position: relative;
   flex-direction: column;
+  &:hover{
+    .down_arrow_active {
+      opacity: inherit;
+    }
+  }
 }
 
 .message_widgets {
@@ -377,9 +382,7 @@ input::placeholder {
   opacity: 0;
 }
 
-.down_arrow_active:hover {
-  opacity: inherit;
-}
+
 
 .message-received {
   background-color: var(--background-message-received);
