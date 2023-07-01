@@ -27,4 +27,4 @@ export  function getNewMessage() {
   }
 }
 
-setInterval(getNewMessage, 1000);
+

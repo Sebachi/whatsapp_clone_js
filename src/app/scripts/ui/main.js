@@ -56,6 +56,7 @@ export const printUsers = async () => {
     const messages = await getMessage()
     chats__container.innerHTML = ``
     for (let i = 0; i < users.length; i++) {
+      
       let lastMessage, lastHour, lastStatus;
       for (let j = 0; j < messages.length; j++) {
         if ((messages[j].emisor === users[i].id && messages[j].receptor === userId) || (messages[j].emisor === userId && messages[j].receptor === users[i].id)) {
@@ -79,6 +80,7 @@ export const printUsers = async () => {
       else{
          on_off_user = emptyChecks
       }
+      if (userId != users[i].id){
       chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].id}" name="${users[i].id}" data-id="${users[i].id}">
         <div class="contact-icon"
           ><img alt='user_profileImg' src="${users[i].userImage}" alt=""
@@ -95,7 +97,7 @@ export const printUsers = async () => {
             </p> <figure class="flag_user"> <img alt='green_dots' src=${on_off_user}> </figure></span
           >
         </div>
-      </div>`
+      </div>`}
     }
   }
 
@@ -117,7 +119,7 @@ export const printMessage = async (callback) => {
     alt="left_arrow">
     </button>
     <button class="profile_name">
-          <div class="user-icon"
+          <div class="user-icon" id="user_icon"
             ><img alt='UserProfileImg' src="${userlist[callback - 1].userImage}" alt=""
           /></div>
           <span>${userlist[callback - 1].name}</span>
