@@ -58,7 +58,9 @@ const ingresando = async () => {
 let timerInterval
 Swal.fire({
   title: 'Joining ...',
-  timer: 1000,
+  timer: 5000,
+  background: "#3b4a54",
+  color: "#d1d7db",
   timerProgressBar: true,
   didOpen:  () => {
     Swal.showLoading()

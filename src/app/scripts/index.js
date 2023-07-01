@@ -26,7 +26,7 @@ d.addEventListener('DOMContentLoaded', async () => {
   
   await sign_in();
   await printUsers();
-  
+  setInterval(getNewMessage, 1000);
   // flagMessage()
   readingChat()
   readingFilter()
@@ -40,4 +40,4 @@ d.addEventListener('DOMContentLoaded', async () => {
 menuRemover()
 returnLogin()
 changer_Listener()
-setInterval(getNewMessage, 1000);
+
