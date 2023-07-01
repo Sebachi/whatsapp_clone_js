@@ -2,7 +2,7 @@ import { printMessage, printUsers, receptorIdentification } from "../ui/main";
 import axios from "axios";
 import { flagMessage } from "./flags";
 
-var currentMessage = [];
+let currentMessage = [];
 let userpass = JSON.parse(localStorage.getItem("userPass"));
 
 export  function getNewMessage() {
@@ -10,13 +10,13 @@ export  function getNewMessage() {
     axios
       .get("https://whatsapclone-backend-production.up.railway.app/messages")
       .then(function (response) {
-        var newMessage = response.data;
+        let newMessage = response.data;
         let sendId = JSON.parse(localStorage.getItem("sendId")) || null;
         if (sendId !== null) {
           flagMessage()
           printUsers();
-          printMessage(sendId)
-           
+          if (JSON.stringify(nuevosMensajes) !== JSON.stringify(mensajesActuales))
+        {  printMessage(sendId)}
 
           currentMessage = newMessage;
         }

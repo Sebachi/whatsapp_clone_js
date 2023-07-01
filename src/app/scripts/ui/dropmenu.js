@@ -75,6 +75,7 @@ export const dropMenu = () => {
     customClass: {
       confirmButton: "confirm_button",
       title: "title_alert",
+      cancelButton: "cancel_button",
     },
   }).then(async (result) => {
     const sendId = localStorage.getItem('sendId')
@@ -102,9 +103,11 @@ const modalEdit = async (messageId) => {
       confirmButtonColor: "#63cb77",
       allowOutsideClick: false,
       inputValue: textmessage,
+
       customClass: {
         confirmButton: "confirm_button",
         inputLabel: "title_alert",
+        cancelButton: "cancel_button",
       },
       inputAttributes: {
         'aria-label': 'Edit your message here'
