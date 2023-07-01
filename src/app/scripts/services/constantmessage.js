@@ -15,7 +15,7 @@ export  function getNewMessage() {
         if (sendId !== null) {
           flagMessage()
           printUsers();
-          if (JSON.stringify(nuevosMensajes) !== JSON.stringify(mensajesActuales))
+          if (JSON.stringify(newMessage) !== JSON.stringify(currentMessage))
         {  printMessage(sendId)}
 
           currentMessage = newMessage;
