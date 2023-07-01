@@ -27,6 +27,7 @@ import emptyChecks from "../../../assets/empty-svgrepo-com.svg"
 import down_arrow from "../../../assets/arrow-down.svg"
 import { DateTime } from "luxon";
 import left_arrow from "../../../assets/arrow-left-com.svg"
+import green_dot from "../../../assets/green-dot.svg"
 
 let userpass = JSON.parse(localStorage.getItem("userPass"))
 
@@ -70,7 +71,14 @@ export const printUsers = async () => {
       } else if (!lastStatus) {
         lastStatus = emptyChecks
       }
-
+      let usersFlag = users[i].flag
+      let on_off_user
+      if (usersFlag){
+         on_off_user = green_dot
+      }
+      else{
+         on_off_user = emptyChecks
+      }
       chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].id}" name="${users[i].id}" data-id="${users[i].id}">
         <div class="contact-icon"
           ><img alt='user_profileImg' src="${users[i].userImage}" alt=""
@@ -84,7 +92,7 @@ export const printUsers = async () => {
             ><figure class="checks"> <img alt='Unactive_checks' src=${lastStatus}> </figure>
             <p class="message_preview">
               ${lastMessage || ""}
-            </p></span
+            </p> <figure class="flag_user"> <img alt='green_dots' src=${on_off_user}> </figure></span
           >
         </div>
       </div>`
