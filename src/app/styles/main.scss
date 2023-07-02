@@ -27,10 +27,10 @@ button {
   height: auto;
 }
 
- img {
-   width: 24px;
-   height: 24px;
- }
+img {
+  width: 24px;
+  height: 24px;
+}
 
 input {
   border: none;
@@ -64,7 +64,7 @@ input {
 
 .chats__header {
   /* position: fixed; */
-  width: 40vw;
+  width: auto;
   border-right: var(--gray-third) 1px solid;
   display: flex;
   flex-direction: column;
@@ -81,7 +81,8 @@ input {
   width: auto;
 }
 
-.user-icon, .contact-icon {
+.user-icon,
+.contact-icon {
   width: 40px;
   height: 40px;
   /* background-image: url(/src/assets/user-com.svg); */
@@ -99,10 +100,11 @@ input {
   object-fit: fill;
 }
 
-.user-icon img{
+.user-icon img {
   height: 100%;
   width: 100%;
 }
+
 #icons-chat {
   display: flex;
   gap: 25px;
@@ -120,6 +122,18 @@ input {
   border-bottom: 2px solid var(--audio-control-incoming);
 }
 
+//filtro 2 (derecha)
+.message__search__section {
+  min-width: 20vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.header__icons h3 {
+  color: var(--audio-control-incoming);
+  font-size: 14px;
+}
+
 .searchTittle {
   color: var(--audio-progress-outgoing);
   text-align: center;
@@ -133,11 +147,11 @@ input {
   justify-content: space-between;
   align-items: center;
   /* position: fixed; */
-  width: 60vw;
+  min-width: 30vh;
   position: relative;
 }
 
-.backArrow{
+.backArrow {
   position: absolute;
   left: 8px;
   height: 16px;
@@ -145,7 +159,8 @@ input {
   align-self: center;
   margin-right: 10px;
   display: none;
-  & img{
+
+  & img {
     height: 100%;
   }
 }
@@ -211,7 +226,7 @@ input::placeholder {
   overflow-y: scroll;
   height: 85.5vh;
   border-right: var(--gray-third) 1px solid;
-
+  width: auto;
 }
 
 .chat__container,
@@ -305,9 +320,14 @@ input::placeholder {
   border-radius: 50%;
 }
 
+.chat-message__section {
+  display: flex;
+  min-width: 40vw;
+}
+
 /* Message section */
 .message__section {
-  width: 60vw;
+
   height: auto;
   min-width: 180px;
   display: flex;
@@ -340,7 +360,8 @@ input::placeholder {
   display: flex;
   position: relative;
   flex-direction: column;
-  &:hover{
+
+  &:hover {
     .down_arrow_active {
       opacity: inherit;
     }
@@ -420,15 +441,18 @@ input::placeholder {
   font-size: 14px;
   color: #fff;
 }
-#sent_button{
+
+#sent_button {
   width: 34px;
   display: flex;
   justify-content: center;
 }
+
 #sent_button img {
   width: 100%;
   height: 100%;
-  &:hover{
+
+  &:hover {
     transform: scale(1.2);
 
   }
@@ -557,11 +581,12 @@ input::placeholder {
 
 // PROFILE CHANGER
 
-.changer_profile{
+.changer_profile {
   width: 40vw;
   height: auto;
-  &_header{
-  
+
+  &_header {
+
     background-color: $background-secondary;
     height: 80px;
     display: flex;
@@ -572,13 +597,15 @@ input::placeholder {
     padding: 0 0 20px 30px;
     font-weight: 500;
     font-size: 17px;
-    & figure{
+
+    & figure {
       width: 16px;
       cursor: pointer;
       position: relative;
-      
+
       top: 1px;
-      & img{
+
+      & img {
         width: 100%;
         height: 100%;
         object-fit: contain;
@@ -586,28 +613,31 @@ input::placeholder {
     }
   }
 }
-.your{
-  &_image{
+
+.your {
+  &_image {
     margin: 30px 0;
     height: 200px;
-  
+
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    &_figure{
+
+    &_figure {
       height: 100%;
       width: 100%;
       border-radius: 50%;
-      
-      & img{
+
+      & img {
         height: 100%;
         width: 100%;
         object-fit: fill;
         border-radius: 50%;
       }
     }
-    &_figure_hover{
+
+    &_figure_hover {
       display: none;
       flex-direction: column;
       align-items: center;
@@ -620,51 +650,60 @@ input::placeholder {
       font-size: 12px;
       line-height: 15px;
     }
-   
+
   }
-  &_name{
-   
+
+  &_name {
+
     height: 100px;
     display: flex;
     flex-direction: column;
     color: #fff;
     gap: 30px;
     padding: 20px;
-    & p{
+
+    & p {
       color: $green-guerrilla;
       font-size: 14px;
     }
+
     & div {
       display: flex;
       justify-content: space-between;
       color: $font_color_changer;
+
       & figure {
         cursor: pointer;
       }
     }
   }
-  &_phrase{
+
+  &_phrase {
     height: 100px;
     display: flex;
     flex-direction: column;
     color: #fff;
     gap: 30px;
     padding: 20px;
-    & p{
+
+    & p {
       color: $green-guerrilla;
       font-size: 14px;
     }
+
     & div {
       display: flex;
       justify-content: space-between;
       color: $font_color_changer;
+
       & figure {
         cursor: pointer;
       }
     }
   }
 }
-.image_container_changer{
+
+.image_container_changer {
   margin: 30px 0;
   height: 100%;
   width: 200px;
@@ -673,25 +712,27 @@ input::placeholder {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-    &:hover{
-      opacity: 60%;
-      .your_image_figure_hover{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        position: absolute;
-        color: #fff;
-        padding: 100px;
-        gap: 10px;
-        font-size: 12px;
-        line-height: 15px;
-        color: #fff;
-        opacity: 10;
-      }
+
+  &:hover {
+    opacity: 60%;
+
+    .your_image_figure_hover {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: absolute;
+      color: #fff;
+      padding: 100px;
+      gap: 10px;
+      font-size: 12px;
+      line-height: 15px;
+      color: #fff;
+      opacity: 10;
     }
-  
+  }
+
 }
 
 
@@ -710,8 +751,9 @@ input::placeholder {
 
   .chats__section,
   .chats__header,
-  .chats__container, .changer_profile {
-    width: 30vw;
+  .chats__container,
+  .changer_profile {
+    min-width: 30vw;
   }
 
   .message__section,
@@ -719,7 +761,7 @@ input::placeholder {
   .message__input,
   .message_view,
   .default_message {
-    width: 70vw;
+    min-width: 40vw;
     color: #fff;
   }
 
@@ -736,7 +778,8 @@ input::placeholder {
 
   .chats__section,
   .chats__header,
-  .chats__container, .changer_profile {
+  .chats__container,
+  .changer_profile {
     width: 28vw;
   }
 
@@ -762,7 +805,8 @@ input::placeholder {
 
   .chats__section,
   .chats__header,
-  .chats__container, .changer_profile {
+  .chats__container,
+  .changer_profile {
     width: 27vw;
   }
 
@@ -801,11 +845,12 @@ input::placeholder {
   }
 }
 
-@media (max-height:550px ){
-  .footer_default{
+@media (max-height:550px) {
+  .footer_default {
     display: none;
   }
-  .default_message{
+
+  .default_message {
     height: 130vh;
   }
 }
@@ -835,11 +880,16 @@ input::placeholder {
     width: 100%;
   }
 
-  .chats__section, .changer_profile {
+  .chats__section,
+  .changer_profile {
     width: 100%;
   }
 
   .message__input {
+    width: 100%;
+  }
+
+  .message__search__section {
     width: 100%;
   }
 

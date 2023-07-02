@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,7 +71,7 @@
     <section class="chats__section" id="chats__section">
       <header class="chats__header ">
         <article class="header__icons fixed_header header">
-          <a href="" class="user-icon"><img id="user_icon"  src="../assets/user-com.svg" alt="user_icon" /></a>
+          <a href="" class="user-icon"><img id="user_icon" src="../assets/user-com.svg" alt="user_icon" /></a>
           <div id="icons-chat">
             <button><img src="/src/assets/users-more-com.svg" alt="users-more" /></button>
             <button><img src="/src/assets/status-com.svg" alt="status" /></button>
@@ -105,29 +106,30 @@
     <!-- AQUI VA EL CHANGER PROFILE -->
     <section class="changer_profile style-4 hidden" id="changer_profile">
       <header class="changer_profile_header ">
-        <figure id="skip_changer" > <img src="../assets/arrow-left-com.svg" alt="left_arrow"></figure>
+        <figure id="skip_changer"> <img src="../assets/arrow-left-com.svg" alt="left_arrow"></figure>
         <p>perfil</p>
       </header>
       <main class="your">
         <article class="your_image">
           <div class="image_container_changer">
-          <figure class="your_image_figure"> <img src="../assets/user-com.svg" alt="user_default"></figure>
-          <figure class="your_image_figure_hover"><img class="user_image_changer" src="../assets/camera.svg" alt="camera">CAMBIAR FOTO <br> DEL PERFIL</figure>
-        </div>
+            <figure class="your_image_figure"> <img src="../assets/user-com.svg" alt="user_default"></figure>
+            <figure class="your_image_figure_hover"><img class="user_image_changer" src="../assets/camera.svg"
+                alt="camera">CAMBIAR FOTO <br> DEL PERFIL</figure>
+          </div>
         </article>
         <article class="your_name">
           <p>Tu nombre</p>
           <div>
-          <span>Aqui va tu nombre de usuario</span>
-          <figure id="edit_name"><img src="../assets/pencil.svg" alt="pencil"></figure>
-        </div>
+            <span>Aqui va tu nombre de usuario</span>
+            <figure id="edit_name"><img src="../assets/pencil.svg" alt="pencil"></figure>
+          </div>
         </article>
         <article class="your_phrase">
-          <p>Info.</p> 
-        <div>
-          <span>Frase epica</span>
-          <figure id="edit_phrase"><img src="../assets/pencil.svg" alt="pencil"></figure>
-        </div>
+          <p>Info.</p>
+          <div>
+            <span>Frase epica</span>
+            <figure id="edit_phrase"><img src="../assets/pencil.svg" alt="pencil"></figure>
+          </div>
         </article>
       </main>
 
@@ -152,19 +154,22 @@
     <!-- BASE MESSAGE -->
     <section class="message__section hidden" id="message__section">
       <header class="message__header header" id="message__header">
-        <!-- <button class="backArrow" id="backArrow">
-          <img src="https://www.svgrepo.com/show/510795/arrow-circle-left.svg" alt="">
-        </button> -->
+        <button class="backArrow" id="backArrow">
+          <img src="../assets/arrow-left-com.svg" alt="">
+        </button>
 
         <button class="profile_name">
-          <div class="user-icon"><img  src="/src/assets/user-com.svg" alt="user-icon" /></div>
-          <span></span>
+          <div class="user-icon"><img id="user-icon-img" src="/src/assets/user-com.svg" alt="user-icon" /></div>
+          <span id="user-name-span"></span>
         </button>
+
         <div class="icons-message">
-          <button><img src="/src/assets/magnifying-glass-svgrepo-com.svg" alt="magnifying-glass" /></button>
+          <button id="messageSearchBtn1"><img src="/src/assets/magnifying-glass-svgrepo-com.svg"
+              alt="magnifying-glass" /></button>
           <button><img src="/src/assets/3dots-com.svg" alt="3dots" /></button>
         </div>
       </header>
+
       <main class="message_view " id="message_view">
         <article class="message__container style-4" id="message__container">
           <div class="message-received message">
@@ -180,6 +185,29 @@
         <input type="text" id="input_message" placeholder="Escribe un mensaje aqui">
         <button id="sent_button"><img src="/src/assets/sent.svg" alt="sent"></button>
       </footer>
+    </section>
+    <!-- buscador dentro del chat #fff-->
+    <section class="message__search__section hidden movileLayout" id="message__search__section">
+      <header class="message__search__header ">
+        <article class="header__icons fixed_header header">
+          <button class="cross_search_bar" id="cancel_message_cross_search_bar"><img src="/src/assets/cross-com.svg"
+              alt="cross"></button>
+          <h3>buscar mensajes</h3>
+
+        </article>
+        <div class="searchbar__container">
+          <button class="searchBtn" id="messageSearchBtn2">
+            <img src="/src/assets/magnifying-glass-svgrepo-com.svg" alt="magnifying-glass" />
+          </button>
+          <input type="text" placeholder="Buscar..." id="messageSearchInput" />
+          <button class="cross_search_bar" id="message_cross_search_bar"><img src="/src/assets/cross-com.svg"
+              alt="cross"></button>
+        </div>
+      </header>
+      <article class="message__search__container ">
+
+      </article>
+
     </section>
 
   </div>

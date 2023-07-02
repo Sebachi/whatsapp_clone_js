@@ -16,7 +16,14 @@ const chats__section = d.getElementById("chats__section") //mejor declararla aqu
 const default_message = d.getElementById('default_message')
 const contact__main = d.getElementById("contact__main")
 const search__container = d.querySelector(".search__container");
-
+// parte mensajes en el chat
+const message__search__section = d.getElementById("message__search__section");
+const cancel_message_cross_search_bar = d.getElementById("cancel_message_cross_search_bar")
+let messageSearchBtn1 = d.getElementById("messageSearchBtn1")
+const messageSearchBtn2 = d.getElementById("messageSearchBtn2")
+const messageSearchInput = d.getElementById("messageSearchInput")
+const message_cross_search_bar = d.getElementById("message_cross_search_bar")
+const message__search__container = d.querySelector(".message__search__container")
 
 
 import magifyingglass from '../../../assets/magnifying-glass-svgrepo-com.svg';
@@ -56,7 +63,7 @@ export const printUsers = async () => {
     const messages = await getMessage()
     chats__container.innerHTML = ``
     for (let i = 0; i < users.length; i++) {
-      
+
       let lastMessage, lastHour, lastStatus;
       for (let j = 0; j < messages.length; j++) {
         if ((messages[j].emisor === users[i].id && messages[j].receptor === userId) || (messages[j].emisor === userId && messages[j].receptor === users[i].id)) {
@@ -74,14 +81,14 @@ export const printUsers = async () => {
       }
       let usersFlag = users[i].flag
       let on_off_user
-      if (usersFlag){
-         on_off_user = green_dot
+      if (usersFlag) {
+        on_off_user = green_dot
       }
-      else{
-         on_off_user = emptyChecks
+      else {
+        on_off_user = emptyChecks
       }
-      if (userId != users[i].id){
-      chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].id}" name="${users[i].id}" data-id="${users[i].id}">
+      if (userId != users[i].id) {
+        chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].id}" data-id="${users[i].id}">
         <div class="contact-icon"
           ><img alt='user_profileImg' src="${users[i].userImage}" alt=""
         /></div>
@@ -107,7 +114,7 @@ export const printUsers = async () => {
 //PrintMessage
 let idReceptor = ``
 export const printMessage = async (callback) => {
- 
+
   const scrollToBottom = () => {
     message__container.scrollTop = message__container.scrollHeight;
   }
@@ -115,23 +122,34 @@ export const printMessage = async (callback) => {
   const userId = identification()
   const userlist = await getusers()
   const receptorId = receptorIdentification()
-  message__header.innerHTML = ` <button class="backArrow" id="backArrow"><img src=${left_arrow}
-    alt="left_arrow">
+  const userIconImg = d.getElementById("user-icon-img") //.src
+  const userNameSpan = d.getElementById("user-name-span") //.text
+
+  userIconImg.src = userlist[callback - 1].userImage;
+  userNameSpan.textContent = userlist[callback - 1].name
+  /*
+  message__header.innerHTML = ` 
+    <button class="backArrow" id="backArrow"><img src=${left_arrow}
+      alt="left_arrow">
     </button>
+
     <button class="profile_name">
-          <div class="user-icon" id="user_icon"
-            ><img alt='UserProfileImg' src="${userlist[callback - 1].userImage}" alt=""
-          /></div>
-          <span>${userlist[callback - 1].name}</span>
-        </button>
-        <div class="icons-message">
-          <button
-            ><img alt='magifyingglass' src=${magifyingglass}> </button>
-          <button><img alt='3dots' src=${dots}> </button>
-        </div>
-        `
+      <div class="user-icon" id="user_icon"
+        ><img alt='UserProfileImg' src="${userlist[callback - 1].userImage}" alt=""
+      /></div>
+      <span>${userlist[callback - 1].name}</span>
+    </button>
+
+    <div class="icons-message">
+      <button id="messageSearchBtn1"
+        ><img alt='magifyingglass' src=${magifyingglass}> </button>
+      <button><img alt='3dots' src=${dots}> </button>
+    </div>
+    `
+  */
+
   message__container.innerHTML = ``
- 
+
   for (let i = 0; i < message.length; i++) {
     let lastStatus = message[i].status
     if (lastStatus == "active") {
@@ -141,18 +159,37 @@ export const printMessage = async (callback) => {
     } else if (!lastStatus) {
       lastStatus = emptyChecks
     }
+
     if ((message[i].emisor === receptorId && message[i].receptor === userId) || (message[i].emisor === userId && message[i].receptor === receptorId)) {
       if (message[i].receptor == userId) {
-        message__container.innerHTML += `  <div class="message-received message" id='${message[i].id}'>
-           <div><p >${message[i].text}</p> <button class="down_arrow menuTrigger down_arrow_active"><img alt='down_arrow'src=${down_arrow}></button></div> 
-            <div class='message_widgets'> <img class='message_flag' alt='message_flag' src=${lastStatus}>  <span class='hour_message'>${message[i].hour}</span> </div>
+        message__container.innerHTML += `  
+          <div class="message-received message" id="${message[i].id}" name="message${message[i].id}">
+            <div>
+              <p >${message[i].text}</p> 
+              <button class="down_arrow menuTrigger down_arrow_active">
+                <img alt='down_arrow'src=${down_arrow}>
+              </button>
+            </div> 
+            <div class='message_widgets'> 
+              <img class='message_flag' alt='message_flag' src=${lastStatus}>  
+              <span class='hour_message'>${message[i].hour}</span> 
             </div>
+          </div>
       `
       } else {
-        message__container.innerHTML += `  <div class="message-sended message" id='${message[i].id}'>
-              <div><p >${message[i].text}</p> <button class="down_arrow menuTrigger down_arrow_active"><img alt='down_arrow' src=${down_arrow}></button></div>
-              <div class='message_widgets'> <img alt='message_flag' class='message_flag' src=${lastStatus}>  <span class='hour_message'>${message[i].hour}</span> </div>
+        message__container.innerHTML += `  
+          <div class="message-sended message" id="${message[i].id}" name="message${message[i].id}">
+              <div>
+                <p >${message[i].text}</p> 
+                <button class="down_arrow menuTrigger down_arrow_active">
+                  <img alt='down_arrow' src=${down_arrow}>
+                </button>
               </div>
+              <div class='message_widgets'> 
+                <img alt='message_flag' class='message_flag' src=${lastStatus}>  
+                <span class='hour_message'>${message[i].hour}</span> 
+              </div>
+            </div>
         `
       }
     }
@@ -170,11 +207,14 @@ const printChat = (click) => {
   printMessage(chatId);
   message__container.setAttribute("data-id", receptorIdentification())
   idReceptor = chatId
-
-
   //se hace invisible la parte de contactos
-
   chats__section.classList.add("movilLayout");
+  //configuracion extra debido a la busqueda en mensajes
+  message__search__section.classList.add("hidden")
+  messageSearchInput.value = "";
+  message__search__container.innerHTML = "";
+
+
 }
 
 //ReadingChat
@@ -312,7 +352,7 @@ const printFilter = async () => {
   for (let i = 0; i < preFilterUsers.length; i++) {
     if (((preFilterUsers[i].name).toLowerCase()).includes(searchText)) {
       searchUsersContainer.innerHTML += `
-      <div class="chat__container" id="message${preFilterUsers[i].id}" name="${preFilterUsers[i].id}" data-id="${preFilterUsers[i].id}">
+      <div class="chat__container" id="message${preFilterUsers[i].id}" data-id="${preFilterUsers[i].id}">
       <div class="contact-icon"
         ><img alt='Profile_pic' src="${preFilterUsers[i].userImage}" alt=""
       /></div>
@@ -384,5 +424,90 @@ export const searchMessage = () => {
   })
 }
 
+export const searchChatMessage = () => {
+  //mensajes del chat
+  const printMessageFilter = async () => {
+    const userId = identification()
+    const sendId = receptorIdentification()
+    const messageSearchText = (messageSearchInput.value).toLowerCase();
+    const preFilterMessages = await getMessage();
+
+    const messagesList = Array.from(message__container.children)
+    console.log(messagesList)
+
+    message__search__container.innerHTML = "";
+    for (let i = 0; i < preFilterMessages.length; i++) {
+      if ((preFilterMessages[i].emisor === userId && preFilterMessages[i].receptor === sendId) || (preFilterMessages[i].emisor === sendId && preFilterMessages[i].receptor === userId)) {
+
+        if (((preFilterMessages[i].text).toLowerCase()).includes(messageSearchText)) {
+          message__search__container.innerHTML += `
+        <div class="filtered__message" id="message${preFilterMessages[i].id}" data-id="${(preFilterMessages[i].emisor == identification()) ? preFilterMessages[i].receptor : preFilterMessages[i].emisor}">
+    
+        <div class="contact__inf_chat">
+          <span class="name_hour"
+            ><p class="contact_name"></p>
+            <p class="hour_message">${preFilterMessages[i].hour}</p></span
+          >
+          <span  class="preview"
+            ><figure class="checks"> <img src=${unactiveChecks} alt='Unactive_checks'> </figure>
+            <p class="message_preview">
+            ${preFilterMessages[i].text}
+            </p></span>
+        </div>
+      </div>`
+        }
+      }
+    }
+  }
+  messageSearchBtn1.addEventListener("click", () => {
+    console.log("undiste busqueda")
+
+    message__section.classList.add("movilLayout")
+    message__search__section.classList.remove("hidden")
+    message__search__section.classList.remove("movilLayout")
+  })
+
+  cancel_message_cross_search_bar.addEventListener("click", () => {
+
+    message__section.classList.remove("movilLayout")
+    message__search__section.classList.add("hidden")
+
+  })
+
+  //parte de lectura del filtro
+  messageSearchBtn2.addEventListener("click", printMessageFilter)
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      printMessageFilter()
+    }
+  }
+
+  messageSearchInput.addEventListener('keypress', handleKeyPress);
+
+  message_cross_search_bar.addEventListener("click", () => {
+    messageSearchInput.value = "";
+    message__search__container.innerHTML = "";
+  })
+
+  message__search__container.addEventListener("click", (event) => {
+    const clickedElement = event.target.closest('.filtered__message') || null;
+    const messageID = clickedElement.getAttribute("id");
+    const chatId = messageID.match(/\d+/)[0];
+
+
+    if (!(clickedElement === null)) {
+      const toScroll = document.getElementsByName(`message${chatId}`)
+      console.log(toScroll)
+      message__section.classList.remove("movilLayout")
+      message__search__section.classList.add("movilLayout")
+
+
+      //toScroll.scrollIntoView
+      //message__container.scrollTop = 20 * (chatId - 1);
+      message__container.scrollTop = (toScroll[0].offsetTop) - 60;
+    }
+  })
+}
 
 

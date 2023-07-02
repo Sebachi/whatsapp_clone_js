@@ -3,7 +3,7 @@ import sign_in from "./services/login.js";
 import printMain from "./ui/printMain.js";
 import { printUsers } from "./ui/main.js";
 import { readingChat, readingFilter } from "./ui/main.js";
-import { returnLogin, sendMessage, searchMessage } from "./ui/main.js";
+import { returnLogin, sendMessage, searchMessage, searchChatMessage } from "./ui/main.js";
 import { quitMessage } from "./ui/main.js";
 import "../styles/index.scss"
 import { dropMenu } from "./ui/dropmenu.js";
@@ -23,13 +23,14 @@ const d = document
 d.addEventListener('DOMContentLoaded', async () => {
   printMain()
   printSign_up()
-  
+
   await sign_in();
   await printUsers();
   setInterval(getNewMessage, 1000);
   // flagMessage()
   readingChat()
   readingFilter()
+  searchChatMessage()
   fnLog_out()
   sendMessage()
   dropMenu()
@@ -40,4 +41,3 @@ d.addEventListener('DOMContentLoaded', async () => {
 menuRemover()
 returnLogin()
 changer_Listener()
-
