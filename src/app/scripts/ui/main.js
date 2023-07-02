@@ -82,7 +82,7 @@ export const printUsers = async () => {
       }
       if (userId != users[i].id){
       chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].id}" name="${users[i].id}" data-id="${users[i].id}">
-        <div class="contact-icon"
+        <div class="contact-icon" name="${users[i].id}"
           ><img alt='user_profileImg' src="${users[i].userImage}" alt=""
         /></div>
         <div class="contact__inf_chat">

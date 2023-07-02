@@ -14,6 +14,7 @@ import { menuRemover } from "./services/menuRemover.js";
 import { getNewMessage } from "./services/constantmessage.js";
 import { flagMessage } from "./services/flags.js";
 import { changer_Listener } from "./ui/changeProfile.js";
+import { viewContact } from "./ui/view_contacts.js";
 
 const d = document
 // const input_message = d.getElementById("input_message")
@@ -27,7 +28,7 @@ d.addEventListener('DOMContentLoaded', async () => {
   await sign_in();
   await printUsers();
   
-  setInterval(getNewMessage, 1000);
+  // setInterval(getNewMessage, 1000);
   // flagMessage()
   readingChat()
   readingFilter()
@@ -37,7 +38,7 @@ d.addEventListener('DOMContentLoaded', async () => {
   dropMenu()
   searchMessage()
   quitMessage()
-
+  viewContact()
 })
 menuRemover()
 returnLogin()

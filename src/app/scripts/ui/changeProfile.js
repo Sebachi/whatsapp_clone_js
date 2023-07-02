@@ -15,130 +15,90 @@ const phrase_changer = d.getElementById("phrase_changer");
 
 const userPass = localStorage.getItem("userPass") || null;
 
+export const setInfChanger = async (id) => {
+  const userInf = await getuser(id);
+  let phraseUser;
+  if (userInf.phrase) {
+    phraseUser = userInf.phrase;
+  } else {
+    phraseUser = "Hey there! I am using Whatsapp clone.";
+  }
+  let imgUser = userInf.userImage;
 
-const setInfChanger = async ()=> {
-  const userId = localStorage.getItem("userId");
-  const userInf = await getuser(userId);
-  let phraseUser
-  if(userInf.phrase){
-    phraseUser =  userInf.phrase
- } else {
-    phraseUser =   "Hey there! I am using Whatsapp clone."
- }
- let imgUser = userInf.userImage;
-
- let nameUser = userInf.name;
+  let nameUser = userInf.name;
   user_image_changer.src = imgUser;
   name_changer.innerText = nameUser;
   userInf.phrase || null;
-    phrase_changer.innerText = phraseUser;
-  }
+  phrase_changer.innerText = phraseUser;
+};
 
 export const changer_Listener = async () => {
   if (userPass !== null) {
     const userId = localStorage.getItem("userId");
     const userInf = await getuser(userId);
-    user_icon.addEventListener("click", (e) => {
+    user_icon.addEventListener("click", async (e) => {
       //Acces change section
       e.preventDefault();
       changer_profile.classList.remove("hidden");
       chats__section.classList.add("hidden");
+      await setInfChanger(userId);
+      // set up user inf
+
+      let phraseUser;
+      if (userInf.phrase) {
+        phraseUser = userInf.phrase;
+      } else {
+        phraseUser = "Hey there! I am using Whatsapp clone.";
+      }
+
+      let nameUser = userInf.name;
+
+    
+      // Image change
+      image_changer.addEventListener("click", async () => {
+        const imgPromise = await profileChanger();
+
+        const object = {
+          userImage: imgPromise,
+        };
+        try {
+          await patchUser(userId, object);
+        } catch (error) {
+          console.log(error);
+          return error;
+        }
+
+        await setInfChanger(userId);
+      });
+
+      // Name changer
+      edit_name.addEventListener("click", async () => {
+        name_chagerAlert(nameUser, userId);
+      });
+      edit_phrase.addEventListener("click", async () => {
+        phrase_chagerAlert(phraseUser, userId);
+      });
     });
-   
+
     skip_changer.addEventListener("click", () => {
       chats__section.classList.remove("hidden");
       changer_profile.classList.add("hidden");
     });
-    // set up user inf
-
-    
-    let phraseUser
-    if(userInf.phrase){
-      phraseUser =  userInf.phrase
-   } else {
-      phraseUser =   "Hey there! I am using Whatsapp clone."
-   }
-   let imgUser = userInf.userImage;
- 
-   let nameUser = userInf.name;
-  
-    setInfChanger()
-    // Image change
-    image_changer.addEventListener("click", async () => {
-      const imgPromise = await profileChanger();
-
-      const object = {
-        userImage: imgPromise,
-      };
-      try {
-       await patchUser(userId, object);
-      } catch (error) {
-        console.log(error);
-        return error;
-      }
-
-      await setInfChanger()
-    });
-  
-    // Name changer
-    edit_name.addEventListener ('click', async ()=> {
-    name_chagerAlert(nameUser, userId)
-   
-  }
-  )
-    edit_phrase.addEventListener('click', async ()=> {
-    phrase_chagerAlert(phraseUser, userId)
-  
-    }
-    )
-
   }
 };
 
 // Name and edit swal
 
-const name_chagerAlert =  (nameUser, userId )=>{
-const inputValue = nameUser
+const name_chagerAlert = (nameUser, userId) => {
+  const inputValue = nameUser;
 
-   Swal.fire({
-  title: 'Edit your name',
-  input: 'text',
-  inputLabel: 'This name is not your username or a PIN.',
-  inputValue: inputValue,
-  background: "#3b4a54",
-    color: "#d1d7db",
-  showCancelButton: true,
-  customClass: {
-    confirmButton: "confirm_button",
-    title: "title_alert",
-    cancelButton: "cancel_button",
-  },
-  inputValidator: async (value) => {
-    if (!value) {
-      return 'You need to write a name!'
-    }
-    else {
-      const object = {
-        name: value,
-      }
-      await patchUser(userId, object);
-      await  setInfChanger()
-    }
-  }
-})
-}
-
-// Phrase swal
-const phrase_chagerAlert =  (phraseUser, userId )=>{
-  const inputValue = phraseUser
-  
-    Swal.fire({
-    title: 'Edit your iconic Phrase',
-    input: 'text',
-    inputLabel: 'Here is your presentation letter',
+  Swal.fire({
+    title: "Edit your name",
+    input: "text",
+    inputLabel: "This name is not your username or a PIN.",
     inputValue: inputValue,
     background: "#3b4a54",
-      color: "#d1d7db",
+    color: "#d1d7db",
     showCancelButton: true,
     customClass: {
       confirmButton: "confirm_button",
@@ -147,16 +107,45 @@ const phrase_chagerAlert =  (phraseUser, userId )=>{
     },
     inputValidator: async (value) => {
       if (!value) {
-        return 'You need to write a phrase!'
+        return "You need to write a name!";
+      } else {
+        const object = {
+          name: value,
+        };
+        await patchUser(userId, object);
+        await setInfChanger(userId);
       }
-      else {
+    },
+  });
+};
+
+// Phrase swal
+const phrase_chagerAlert = (phraseUser, userId) => {
+  const inputValue = phraseUser;
+
+  Swal.fire({
+    title: "Edit your iconic Phrase",
+    input: "text",
+    inputLabel: "Here is your presentation letter",
+    inputValue: inputValue,
+    background: "#3b4a54",
+    color: "#d1d7db",
+    showCancelButton: true,
+    customClass: {
+      confirmButton: "confirm_button",
+      title: "title_alert",
+      cancelButton: "cancel_button",
+    },
+    inputValidator: async (value) => {
+      if (!value) {
+        return "You need to write a phrase!";
+      } else {
         const object = {
           phrase: value,
-        }
-      await  patchUser(userId, object);
-      await  setInfChanger()
+        };
+        await patchUser(userId, object);
+        await setInfChanger(userId);
       }
-    }
-  })
-  }
-  
+    },
+  });
+};
