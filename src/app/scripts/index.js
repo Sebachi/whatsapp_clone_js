@@ -28,7 +28,7 @@ d.addEventListener('DOMContentLoaded', async () => {
   await sign_in();
   await printUsers();
   
-  // setInterval(getNewMessage, 1000);
+ setInterval(getNewMessage, 1000);
   // flagMessage()
   readingChat()
   readingFilter()

@@ -15,10 +15,13 @@ export  function getNewMessage() {
         let sendId = JSON.parse(localStorage.getItem("sendId")) || null;
         if (sendId !== null) {
           if (JSON.stringify(newMessage) !== JSON.stringify(currentMessage))
-        {  printMessage(sendId)}
-         printUsers();
+        {  printMessage(sendId)
+          printUsers();
           flagMessage()
           currentMessage = newMessage;
+        
+        }
+       
         }
       })
       .catch(function (error) {
