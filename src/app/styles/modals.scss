@@ -23,6 +23,13 @@
     justify-content: space-around;
     position: relative;
     align-items: center;
+    & label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 10px;
+    }
     & .title_alert{
         font-size: 19px;
         width: 30%;
