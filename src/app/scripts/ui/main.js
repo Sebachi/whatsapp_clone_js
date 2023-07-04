@@ -505,7 +505,7 @@ export const searchChatMessage = () => {
 
       //toScroll.scrollIntoView
       //message__container.scrollTop = 20 * (chatId - 1);
-      message__container.scrollTop = (toScroll[0].offsetTop) - 60;
+      message__container.scrollTop = (toScroll[0].offsetTop) - 100;
     }
   })
 }

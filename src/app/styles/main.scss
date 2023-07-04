@@ -127,11 +127,13 @@ input {
   min-width: 20vw;
   display: flex;
   flex-direction: column;
+  
 }
 
 .header__icons h3 {
   color: var(--audio-control-incoming);
   font-size: 14px;
+  text-transform:  capitalize;
 }
 
 .searchTittle {
@@ -789,7 +791,7 @@ input::placeholder {
   .message_view,
   .default_message {
 
-    width: 68vw;
+    min-width: 35vw;
   }
 
   .message {
@@ -798,7 +800,7 @@ input::placeholder {
 }
 
 @media (min-width: 1660px) {
-  body {
+  body{
     border: 1px var(--app-background) solid;
     margin: 2vh 5vw
   }
@@ -815,11 +817,12 @@ input::placeholder {
   .message_view,
   .message__input,
   .default_message {
-    width: 63vw;
+    min-width: 43vw;
+
   }
 
   .searchbar__container {
-    width: 25vw;
+    width: 97%;
   }
 
   .message {
