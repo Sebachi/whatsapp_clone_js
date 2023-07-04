@@ -124,7 +124,11 @@ const creatorUser = async () => {
       };
       console.log(newUser);
       await postUser(newUser);
-      confirm_Sign_up();}
+      await confirm_Sign_up()
+      setTimeout( async () => {
+       location.reload()
+      }, 500);
+     ;}
     } catch (error) {
       console.log(error);
     }
@@ -141,7 +145,7 @@ register.addEventListener('click', async(event) => {
 
 
 // alerts
-const confirm_Sign_up = () => {
+const confirm_Sign_up = async () => {
   Swal.fire({
     title: "You are register in Whatsapp clone!",
     color: "#d1d7db",
