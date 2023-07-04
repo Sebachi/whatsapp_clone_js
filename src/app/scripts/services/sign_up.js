@@ -101,17 +101,17 @@ const creatorUser = async () => {
     notValues();
   } else {
     try {
-      let  isNumberValid
-    const users = await getusers();
-      for (let i = 0; i < users.length; i++) {
-        if (Number(users[i].user_name) == newNumber.value) {
-          console.log(users[i].user_name);
-       await wrongNumber();
-       isNumberValid = false;
-       break;
+      let isNumberinValid = false;
+      const users = await getusers();
+        for (let i = 0; i < users.length; i++) {
+          if (Number(users[i].user_name) == newNumber.value) {
+            console.log(users[i].user_name);
+         await wrongNumber();
+         isNumberinValid = true;
+         break;
+          }
         }
-      }
-      if (isNumberValid)
+        if (!isNumberinValid)
       {const userImgPromise = await new_user_image;
       const userImg = await userImgPromise;
       const newUser = {
