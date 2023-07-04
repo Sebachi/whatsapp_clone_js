@@ -138,7 +138,10 @@ input {
 
 .searchTittle {
   color: var(--audio-progress-outgoing);
-  text-align: center;
+  text-align: start;
+  padding-left: 10px;
+  text-transform: capitalize;
+  font-size: 17px;
   border-top: 2px solid var(--audio-control-incoming);
 }
 
@@ -256,6 +259,10 @@ input::placeholder {
 
 .chat__container:active {
   background-color: var(--gray-fourth);
+}
+
+.contact_name{
+  color: #fff;
 }
 
 .contact__inf_chat {

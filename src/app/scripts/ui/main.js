@@ -375,19 +375,26 @@ const printFilter = async () => {
   //aqui sigo
   const receptorId = receptorIdentification()
   const userId = identification()
-
+  let filteredUser
   for (let j = 0; j < preFilterMessages.length; j++) {
 
     if (preFilterMessages[j].emisor === userId || preFilterMessages[j].receptor === userId) {
 
       if (((preFilterMessages[j].text).toLowerCase()).includes(searchText)) {
+
+             if(preFilterMessages[j].emisor == userId) {
+              filteredUser = preFilterUsers[preFilterMessages[j].receptor - 1].name }
+              else if (preFilterMessages[j].emisor == receptorId){ filteredUser =  preFilterUsers[preFilterMessages[j].emisor - 1].name}
+              else {filteredUser = ``}
+
+
+
         searchMessagesContainer.innerHTML += `
-      <div class="filtered__message" id="message${preFilterMessages[j].id}" data-id="${(preFilterMessages[j].emisor == identification()) ? preFilterMessages[j].receptor : preFilterMessages[j].emisor}">
+      <div class="filtered__message" id="message${preFilterMessages[j].id}" data-id="${(preFilterMessages[j].emisor == userId) ? preFilterMessages[j].receptor : preFilterMessages[j].emisor}">
   
       <div class="contact__inf_chat">
         <span class="name_hour"
-          ><p class="contact_name">${(preFilterMessages[j].emisor == identification()) ? preFilterUsers[preFilterMessages[j].receptor - 1].name : preFilterUsers[preFilterMessages[j].emisor - 1].name
-          }</p>
+          ><p class="contact_name">${filteredUser}</p>
           <p class="hour_message">${preFilterMessages[j].hour}</p></span
         >
         <span  class="preview"
