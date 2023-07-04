@@ -11,15 +11,14 @@ const dt = DateTime.local().setZone("America/Bogota");
  const btn_submit = d.getElementById('btnSubmit')
 // btn_submit.addEventListener('click', (e)=>{
 //   e.preventDefault()
-//   console.log('hola');
-// })
+//   console.log('hola'); })
 
-export const sign_in =  async () => {
+const sign_in =  async () => {
  
   let validUser = false, validPassword = false, userId, userPass = false;
   const users = await getusers();
-  formContainer.addEventListener("submit", async (event) => {
-    // btn_submit.addEventListener('click', async (event)=>{
+  // formContainer.addEventListener("submit", async (event) => {
+     btn_submit.addEventListener('click', async (event)=>{
     console.log('hola');
     event.preventDefault();
 

@@ -15,7 +15,7 @@ const newNumber = d.getElementById("newNumber");
 const newName = d.getElementById("newName");
 const newPassword = d.getElementById("newPassword");
 const newPhrase = d.getElementById("newPhrase");
-
+let isNumberValid
 // Print sign_up function
 export const printSign_up = () => {
   sign_up_page.addEventListener("click", () => {
