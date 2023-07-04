@@ -88,7 +88,7 @@ export const printUsers = async () => {
         on_off_user = emptyChecks
       }
       if (userId != users[i].id) {
-        chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].id}" name="${users[i].id}" data-id="${users[i].id}">
+        chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].id}" data-id="${users[i].id}">
         <div class="contact-icon" name="${users[i].id}"
           ><img alt='user_profileImg' src="${users[i].userImage}" alt=""
         /></div>
@@ -240,6 +240,7 @@ export const readingFilter = async () => {
       message__section.classList.remove('hidden')
       message__section.classList.remove('movilLayout') //si lo tiene
       const filterID = clickedFilteredMessage.getAttribute("data-id");
+      localStorage.setItem("sendId", filterID)
       const chatId = filterID.match(/\d+/)[0];
       printMessage(chatId);
 
@@ -252,6 +253,8 @@ export const readingFilter = async () => {
     const clickedElement = event.target.closest('.chat__container') || null;
 
     if (!(clickedElement === null)) {
+      const sendId = clickedElement.getAttribute('data-id')
+      localStorage.setItem("sendId", sendId)
       printChat(clickedElement);
     }
   })
