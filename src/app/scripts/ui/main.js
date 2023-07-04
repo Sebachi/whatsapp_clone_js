@@ -88,8 +88,8 @@ export const printUsers = async () => {
         on_off_user = emptyChecks
       }
       if (userId != users[i].id) {
-        chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].id}" data-id="${users[i].id}">
-        <div class="contact-icon"
+        chats__container.innerHTML += ` <div class="chat__container" id="message${users[i].id}" name="${users[i].id}" data-id="${users[i].id}">
+        <div class="contact-icon" name="${users[i].id}"
           ><img alt='user_profileImg' src="${users[i].userImage}" alt=""
         /></div>
         <div class="contact__inf_chat">
@@ -382,10 +382,11 @@ const printFilter = async () => {
 
       if (((preFilterMessages[j].text).toLowerCase()).includes(searchText)) {
 
-             if(preFilterMessages[j].emisor == userId) {
-              filteredUser = preFilterUsers[preFilterMessages[j].receptor - 1].name }
-              else if (preFilterMessages[j].emisor == receptorId){ filteredUser =  preFilterUsers[preFilterMessages[j].emisor - 1].name}
-              else {filteredUser = ``}
+        if (preFilterMessages[j].emisor == userId) {
+          filteredUser = preFilterUsers[preFilterMessages[j].receptor - 1].name
+        }
+        else if (preFilterMessages[j].emisor == receptorId) { filteredUser = preFilterUsers[preFilterMessages[j].emisor - 1].name }
+        else { filteredUser = `` }
 
 
 

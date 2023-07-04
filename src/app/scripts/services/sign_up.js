@@ -31,7 +31,7 @@ export const printSign_up = () => {
 
 // Image profile listener
 let img_url;
-const profileChanger = async () => {
+export const profileChanger = async () => {
   const { value: file } = await Swal.fire({
     title: "Select image profile",
     input: "file",

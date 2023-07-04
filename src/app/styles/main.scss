@@ -127,13 +127,13 @@ input {
   min-width: 20vw;
   display: flex;
   flex-direction: column;
-  
+
 }
 
 .header__icons h3 {
   color: var(--audio-control-incoming);
   font-size: 14px;
-  text-transform:  capitalize;
+  text-transform: capitalize;
 }
 
 .searchTittle {
@@ -261,7 +261,7 @@ input::placeholder {
   background-color: var(--gray-fourth);
 }
 
-.contact_name{
+.contact_name {
   color: #fff;
 }
 
@@ -733,7 +733,7 @@ input::placeholder {
       text-align: center;
       position: absolute;
       color: #fff;
-      padding: 100px;
+      padding: 50px;
       gap: 10px;
       font-size: 12px;
       line-height: 15px;
@@ -807,7 +807,7 @@ input::placeholder {
 }
 
 @media (min-width: 1660px) {
-  body{
+  body {
     border: 1px var(--app-background) solid;
     margin: 2vh 5vw
   }

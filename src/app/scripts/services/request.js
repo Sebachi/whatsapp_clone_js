@@ -12,6 +12,15 @@ export const getusers = async () => {
     return error;
   }
 };
+export const getuser = async (callback) => {
+  try {
+    const { data } = await axios.get(`${URL_API}${"/users"}/${callback}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
 
 export const getMessage = async () => {
   try {
@@ -80,7 +89,6 @@ export const deleteMessage = async (messageId) => {
 
 export const patchStatusMessage = async (idUser, idOtherUser) => {
   try {
-    console.log("si estoy en patch");
     const data = await getMessage();
     for (let i = 0; i < data.length; i++) {
       if (data[i].emisor == idOtherUser && data[i].receptor == idUser) {
@@ -100,6 +108,15 @@ export const patchStatusMessage = async (idUser, idOtherUser) => {
 export const patchFlagUser = async (idUser, newFlag) => {
   try {
     await axios.patch(`${URL_API}/users/${idUser}`, newFlag);
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+export const patchUser = async (idUser, patchfile) => {
+  try {
+    await axios.patch(`${URL_API}/users/${idUser}`, patchfile);
   } catch (error) {
     console.log(error);
     return error;
