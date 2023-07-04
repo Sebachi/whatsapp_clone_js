@@ -1,5 +1,5 @@
 
-import sign_in from "./services/login.js";
+import {sign_in}from "./services/login.js";
 import printMain from "./ui/printMain.js";
 import { printUsers } from "./ui/main.js";
 import { readingChat, readingFilter } from "./ui/main.js";
@@ -29,12 +29,10 @@ d.addEventListener('DOMContentLoaded', async () => {
   await printUsers();
 
   setInterval(getNewMessage, 1000);
-  // flagMessage()
   readingChat()
   readingFilter()
   searchChatMessage()
   fnLog_out()
-  changer_Listener()
   sendMessage()
   dropMenu()
   searchMessage()
@@ -44,4 +42,7 @@ d.addEventListener('DOMContentLoaded', async () => {
 menuRemover()
 returnLogin()
 changer_Listener()
+
+
+
 

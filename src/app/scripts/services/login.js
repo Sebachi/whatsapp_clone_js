@@ -1,4 +1,4 @@
-
+const d = document
 import { getusers, patchFlagUser } from "./request";
 const formContainer = document.getElementById("signUp");
 const userInput = document.getElementById("user");
@@ -8,10 +8,19 @@ import { DateTime } from "luxon";
 const dt = DateTime.local().setZone("America/Bogota");
 
 
-const sign_in =  async () => {
+ const btn_submit = d.getElementById('btnSubmit')
+// btn_submit.addEventListener('click', (e)=>{
+//   e.preventDefault()
+//   console.log('hola');
+// })
+
+export const sign_in =  async () => {
+ 
   let validUser = false, validPassword = false, userId, userPass = false;
   const users = await getusers();
   formContainer.addEventListener("submit", async (event) => {
+    // btn_submit.addEventListener('click', async (event)=>{
+    console.log('hola');
     event.preventDefault();
 
     for(let i = 0; i < users.length; i++) {

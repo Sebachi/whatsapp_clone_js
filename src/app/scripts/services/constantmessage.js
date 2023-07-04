@@ -14,14 +14,12 @@ export  function getNewMessage() {
         let newMessage = response.data;
         let sendId = JSON.parse(localStorage.getItem("sendId")) || null;
         if (sendId !== null) {
+          flagMessage()
+          printUsers();
           if (JSON.stringify(newMessage) !== JSON.stringify(currentMessage))
         {  printMessage(sendId)
-          printUsers();
-          flagMessage()
-          currentMessage = newMessage;
-        
         }
-       
+        currentMessage = newMessage;
         }
       })
       .catch(function (error) {
