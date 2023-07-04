@@ -21,27 +21,34 @@ const d = document
 // const sent_button = d.getElementById("sent_button")
 // const message__container = d.getElementById("message__container")
 
-d.addEventListener('DOMContentLoaded', async () => {
-  printMain()
-  printSign_up()
+// d.addEventListener('DOMContentLoaded', async () => {
 
-  await sign_in();
-  await printUsers();
+  setTimeout(async () => {
+    printMain();
+    printSign_up();
+    menuRemover();
+    returnLogin();
+    changer_Listener();
+    await sign_in();
+    await printUsers();
 
-  //setInterval(getNewMessage, 1000);
-  readingChat()
-  readingFilter()
-  searchChatMessage()
-  fnLog_out()
-  sendMessage()
-  dropMenu()
-  searchMessage()
-  quitMessage()
-  viewContact()
-})
-menuRemover()
-returnLogin()
-changer_Listener()
+    setTimeout(() => {
+      getNewMessage();
+      setInterval(getNewMessage, 1000);
+    }, 250);
+
+    readingChat();
+    readingFilter();
+    searchChatMessage();
+    fnLog_out();
+    sendMessage();
+    dropMenu();
+    searchMessage();
+    quitMessage();
+    viewContact();
+  }, 250);
+// })
+
 
 
 
