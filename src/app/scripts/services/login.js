@@ -19,7 +19,6 @@ const sign_in =  async () => {
   const users = await getusers();
   // formContainer.addEventListener("submit", async (event) => {
      btn_submit.addEventListener('click', async (event)=>{
-    console.log('hola');
     event.preventDefault();
 
     for(let i = 0; i < users.length; i++) {
@@ -34,7 +33,6 @@ const sign_in =  async () => {
     if (!validUser) {
       wrongnumber()
     } else if (validUser && validPassword) {
-      // console.log("Ingresando ...");
       ingresando()
       userPass = true
       localStorage.setItem('userPass', JSON.stringify(validUser));

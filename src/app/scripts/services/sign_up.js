@@ -15,7 +15,7 @@ const newNumber = d.getElementById("newNumber");
 const newName = d.getElementById("newName");
 const newPassword = d.getElementById("newPassword");
 const newPhrase = d.getElementById("newPhrase");
-let isNumberValid
+let isNumberValid;
 // Print sign_up function
 export const printSign_up = () => {
   sign_up_page.addEventListener("click", () => {
@@ -23,7 +23,7 @@ export const printSign_up = () => {
     bodySignUp.classList.add("hidden");
   });
   return_login.addEventListener("click", () => {
-    signUpRealForm.reset()
+    signUpRealForm.reset();
     bodySignUp.classList.remove("hidden");
     bodySignUp2.classList.add("hidden");
   });
@@ -37,7 +37,7 @@ export const profileChanger = async () => {
     input: "file",
     background: "#3b4a54",
     color: "#d1d7db",
-    confirmButtonText: 'Upload',
+    confirmButtonText: "Upload",
     customClass: {
       confirmButton: "confirm_button",
     },
@@ -101,28 +101,28 @@ const creatorUser = async () => {
     notValues();
   } else {
     try {
-    const users = await getusers();
+      const users = await getusers();
       for (let i = 0; i < users.length; i++) {
         if (Number(users[i].user_name) == newNumber.value) {
-          console.log(users[i].user_name);
-       await wrongNumber();
-       isNumberValid = false;
-       break;
+          await wrongNumber();
+          isNumberValid = false;
+          break;
         }
       }
-      if (isNumberValid)
-      {const userImgPromise = await new_user_image;
-      const userImg = await userImgPromise;
-      const newUser = {
-        name: newName.value,
-        userImage: userImg,
-        user_name: newNumber.value.toString(),
-        password: newPassword.value,
-        flag: false,
-        phrase: newPhrase.value,
-      };
-      await postUser(newUser);
-      confirm_Sign_up();}
+      if (isNumberValid) {
+        const userImgPromise = await new_user_image;
+        const userImg = await userImgPromise;
+        const newUser = {
+          name: newName.value,
+          userImage: userImg,
+          user_name: newNumber.value.toString(),
+          password: newPassword.value,
+          flag: false,
+          phrase: newPhrase.value,
+        };
+        await postUser(newUser);
+        confirm_Sign_up();
+      }
     } catch (error) {
       console.log(error);
     }
@@ -130,11 +130,10 @@ const creatorUser = async () => {
 };
 
 // register button
-register.addEventListener('click', async(event) => {
-    event.preventDefault();
-    await creatorUser();
-  })
-
+register.addEventListener("click", async (event) => {
+  event.preventDefault();
+  await creatorUser();
+});
 
 // alerts
 const confirm_Sign_up = () => {
@@ -198,7 +197,6 @@ const notImage = () => {
       location.reload();
     }
   });
-  ;
 };
 const notValues = () => {
   Swal.fire({

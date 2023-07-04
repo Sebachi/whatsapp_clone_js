@@ -8,7 +8,6 @@ export const getusers = async () => {
   try {
    
     const { data } = await axios.get(`${URL_API}/users`);
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
