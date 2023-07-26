@@ -16,3 +16,11 @@ https://whatsapp-clone-js-goodtry.vercel.app/
 3. Have a chat with any person with access to the deploy, try it with a friend!
 4. Enjoyed
 
+### What to do?
+1. Make a chat with any user registered on the website.
+2. View the profile of any user, clicking his profile picture on the users section.
+3. Change your profile picture, inf or username, clicking in your profile picture on the users section.
+4. Delete or change any message of any chat.
+5. See when your messages are seen.
+6. Search a message or user clicking any of the magnifying glass.
+7. Make a logout with clicking in the 3dots on users section.
